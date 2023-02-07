@@ -12,6 +12,6 @@
 	<title>Test Page</title>
 </head>
 <body>
-
+	<?php header('location: login/login.php'); ?>
 </body>
 </html>
