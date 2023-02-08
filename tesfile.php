@@ -4,8 +4,6 @@
 	$result = mysqli_query($conn, $sql);
 	$accounts = mysqli_fetch_all($result, MYSQLI_ASSOC);
 	mysqli_free_result($result);
-
-	// close the connection
 	mysqli_close($conn);
 ?>
 
@@ -24,11 +22,15 @@
 		Users
 	</h1>
 	<div>
-		<?php foreach($accounts as $account): ?>
-			<h3>
-				<?php echo htmlspecialchars($account['lastName']); ?>
-			</h3>
-		<?php endforeach; ?>
+		<ul>
+			<?php foreach($accounts as $account): ?>
+				<li>
+					<p>
+						<?php echo htmlspecialchars($account['lastName'] . ", " . $account['firstName']); ?>
+					</p>
+				</li>
+			<?php endforeach; ?>
+		</ul>
 	</div>
 </body>
 </html>
