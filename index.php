@@ -18,10 +18,10 @@ if(isset($_SESSION['login_user'])){
 	<title>Test Page</title>
 </head>
 <body>
-	<div class="container-fluid">
-		<center>
-			<a href="login.php" class="btn btn-primary" role="button">Login</a>
-		</center>
-	</div>
+	<center>
+		<a href="login.php" class="btn btn-primary" role="button">Go to Login Page</a>
+	</center>
+	
+
 </body>
 </html>
