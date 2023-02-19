@@ -15,11 +15,11 @@ if(isset($_SESSION['login_user'])){
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-	<title>Test Page</title>
+	<title>Test DB Connection Page</title>
 </head>
 <body>
 	<center>
-		<a href="login.php" class="btn btn-primary" role="button">Go to Login Page</a>
+		<a href="login.php" class="btn btn-primary" role="button">Go to BCP Property Custodian Login Page</a>
 	</center>
 	
 

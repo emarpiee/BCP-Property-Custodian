@@ -16,7 +16,7 @@ if(isset($_SESSION['login_user'])){
     <link rel="stylesheet" href="style/main.css" />
     <link rel="stylesheet" href="style/bootstrap.css" />
     <link rel="stylesheet" href="style/login.css" />
-    <title>Login</title>
+    <title>Login to BCP Porperty Custodian</title>
 </head>
 
 <body>
@@ -40,7 +40,7 @@ if(isset($_SESSION['login_user'])){
                             <label htmlFor="exampleInputEmail1" class="form-label fw-semibold fs-6">
                                 Email
                             </label>
-                            <input type="email" class="inputField input-form form-control px-3 fs-6 fw-normal" required name="email" aria-describedby="emailHelp" />
+                            <input type="email" class="inputField input-form form-control px-3 fs-6 fw-normal" required name="email" placeholder="Enter Email Address here" />
                         </div>
                         <div class="mb-3">
                             <label htmlFor="inputPassword" class="form-label fw-semibold fs-6">
@@ -48,46 +48,49 @@ if(isset($_SESSION['login_user'])){
                             </label>
                             <div id="login">
                                 <div class="passwordContainer">
-                                    <input type="password" class="inputField input-form form-control px-3 fs-6 fw-normal" required name="password" />
+                                    <input type="password" class="inputField input-form form-control px-3 fs-6 fw-normal" required name="password" placeholder="Enter Password here"/>
                                     <i class="fa-solid fa-eye-slash" id="passwordIconId"></i>
                                 </div>
                             </div>
                         </div>
+
                         <button type="submit" class="buttonTemplate sumbit-button btn rounded-2 w-100 mt-3" name="submit">
                             Log in
                         </button>
                         <div class="mb-3">
                             <?php 
-                        if(isset($_REQUEST["err"]))
-                            $msg="Invalid username or Password";
-                        ?>
+                            if(isset($_REQUEST["err"]))
+                                $msg="Invalid username or Password";
+                            ?>
                             <p class="errorInput"><?php if(isset($msg))
                             {
 
                                 echo $msg;
                             }
-                            ?></p>
-                        </div>
-                    </form>
-                </div>
+                        ?></p>
+                    </div>
+                    <span class="loginLineBreak my-4"></span>
+                    <span>By using our site, you understand and agree to the BCP Property Custodian's Terms of Service and Policy Statement.</span>
+                </form>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script>
-        let showPassword = document.querySelector("#passwordIconId");
-        const passwordField = document.querySelector("#inputPassword");
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script>
+    let showPassword = document.querySelector("#passwordIconId");
+    const passwordField = document.querySelector("#inputPassword");
 
-        showPassword.addEventListener("click", function() {
-            this.classList.toggle("fa-eye");
+    showPassword.addEventListener("click", function() {
+        this.classList.toggle("fa-eye");
 
-            const type =
-            passwordField.getAttribute("type") === "password" ?
-            "text" :
-            "password";
-            passwordField.setAttribute("type", type);
-        });
-    </script>
+        const type =
+        passwordField.getAttribute("type") === "password" ?
+        "text" :
+        "password";
+        passwordField.setAttribute("type", type);
+    });
+</script>
 </body>
 
 </html>
