@@ -1,4 +1,5 @@
 <?php
+include("config.php"); 
 session_start ();
 	if(isset($_POST['submit']) && $_SERVER["REQUEST_METHOD"] == "POST")
 	{
