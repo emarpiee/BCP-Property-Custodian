@@ -16,10 +16,10 @@ if(isset($_SESSION['login_user'])){
     <link rel="stylesheet" href="style/main.css" />
     <link rel="stylesheet" href="style/bootstrap.css" />
     <link rel="stylesheet" href="style/login.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet"/>
     <title>Login to BCP Porperty Custodian</title>
-
 </head>
-
 <body>
     <div class="loginContainer">
         <div class="d-lg-flex position-relative">
@@ -51,7 +51,7 @@ if(isset($_SESSION['login_user'])){
                                 <div class="passwordContainer">
                                     <input type="password" class="inputField input-form form-control px-3 fs-6 fw-normal" required name="password"  id="inputPassword"
                                     placeholder="Enter Password here"/>
-                                    <i class="fa-solid fa-eye" id="passwordIconId"></i>
+                                    <i class="fa-solid fa-eye-slash" id="passwordIconId"></i>
                                 </div>
                             </div>
                         </div>
@@ -61,9 +61,9 @@ if(isset($_SESSION['login_user'])){
                         </button>
                         <div class="mt-3 text-center">
                             <?php 
-                            if(isset($msg)){?>
+                            if(isset($_REQUEST['err'])){?>
                                 <p class="alert alert-danger text-center" role="alert">
-                                    <?php echo $msg; ?>
+                                    <?php echo $_REQUEST['err']; ?>
                                 </p>
                             <?php }?>
                         </div>
@@ -79,7 +79,7 @@ if(isset($_SESSION['login_user'])){
         let showPassword = document.querySelector("#passwordIconId");
         const passwordField = document.querySelector("#inputPassword");
         showPassword.addEventListener("click", function() {
-            this.classList.toggle("fa-eye-slash");
+            this.classList.toggle("fa-eye");
             const type =
             passwordField.getAttribute("type") === "password" ?
             "text" : "password";
