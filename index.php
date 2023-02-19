@@ -1,6 +1,6 @@
 <?php
 
-require_once('config.php');
+require_once('configLocal.php');
 	//check if the user already logged in, if true always redirect to index
 session_start();
 if(isset($_SESSION['login_user'])){
