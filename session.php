@@ -17,7 +17,8 @@ session_start ();
 		}
 		else	
 		{
-			header("location:login.php?err=1");
+			$msg = 'Invalid Email or Password, please try again';
+			header("location:login.php?err=1".$msg);
 
 		}
 	}
