@@ -1,6 +1,6 @@
 <?php
 
-if($_SERVER = 'localhost'){
+if($_SERVER['HTTP_HOST'] = 'localhost'){
     //execute if the current working directory is in LOCALHOST
 
     $DB_SERVER = "localhost";
