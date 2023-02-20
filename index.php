@@ -1,11 +1,6 @@
 <?php
 
 require_once('config.php');
-	//check if the user already logged in, if true always redirect to index
-session_start();
-if(isset($_SESSION['login_user'])){
-	header('location:homeTest.php');
-} 
 ?>
 
 
