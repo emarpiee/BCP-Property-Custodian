@@ -4,7 +4,7 @@
 
 .polygon1 {
   position: relative;
-  background: url('image/bcp.jpg'), linear-gradient(rgba(0, 191, 255, 0.2), rgba(0, 191, 255, 0.2));
+  background: url('../assets/images/bcp.jpg'), linear-gradient(rgba(0, 191, 255, 0.2), rgba(0, 191, 255, 0.2));
   background-blend-mode: overlay;
   width: 610px;
   height: 100vh;
@@ -131,7 +131,7 @@
   .polygon1 {
     position: static;
     width: 100%;
-    background: url('image/bcp.jpg'),
+    background: url('../assets/images/bcp.jpg'),
       linear-gradient(rgba(0, 191, 255, 0.5), rgba(0, 191, 255, 0.5));
     -webkit-clip-path: polygon(100% 7%, 50% 15%, 0 7%, 0 0, 49% 0, 100% 0);
     clip-path: polygon(100% 7%, 50% 15%, 0 7%, 0 0, 49% 0, 100% 0);

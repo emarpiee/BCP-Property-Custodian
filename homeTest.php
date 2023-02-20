@@ -1,8 +1,12 @@
-<?php 
+<?php
+require('config.php'); 
 session_start ();
 if(!isset($_SESSION["login_user"])){
 	header("location:login.php"); 
 }
+$accId = $_SESSION['accId'];
+$sql = mysqli_query($conn,"SELECT * FROM pc_accounts WHERE accId = $accId ");
+$accInfo = mysqli_fetch_array($sql);
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,7 +20,11 @@ if(!isset($_SESSION["login_user"])){
 
 	<div class="container">
 		<center>
-			<?php echo "Hello" . " " .$_SESSION['firstname']; ?>
+			<?php 
+			 echo "Welcome " . $accInfo['firstName'] .  " " . $accInfo['middleName'] . " " . $accInfo['lastName']; 
+			 print_r($accInfo);
+
+			?>
 			<div>
 				<a href="logout.php" class="btn btn-danger" role="button">Logout</a>
 			</div>

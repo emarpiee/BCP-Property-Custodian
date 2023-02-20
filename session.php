@@ -1,27 +1,57 @@
 <?php
-include("config.php"); 
+require("config.php"); 
 session_start ();
-	if(isset($_POST['submit']) && $_SERVER["REQUEST_METHOD"] == "POST")
+if(isset($_POST['submit']))
+{
+	$email = mysqli_real_escape_string($conn,$_POST['email']);
+	$pass = mysqli_real_escape_string($conn,$_POST['password']); 
+
+	//check if email and pass is in database, if so, store that array of data in a variable
+	$sql = mysqli_query($conn,"SELECT * FROM pc_accounts where userEmail='$email'and userPass='$pass'");
+	$result=mysqli_fetch_array($sql);
+	
+	if($result)
 	{
-		$email = mysqli_real_escape_string($conn,$_POST['email']);
-		$pass = mysqli_real_escape_string($conn,$_POST['password']); 
-
-		$sql = mysqli_query($conn,"SELECT * FROM pc_accounts where userEmail='$email'and userPass='$pass'");
-		$result=mysqli_fetch_array($sql);
-		if($result)
-		{
-
-			$_SESSION['firstname'] = $result['firstName'];
+		$accId = $result['accId'];
+		$sql2 = mysqli_query($conn, "SELECT * FROM pc_accounts
+INNER JOIN pc_user_role
+ON pc_accounts.`roleId` = pc_user_role.`roleId` WHERE accId = '$accId' ");
+		$result2 = mysqli_fetch_array($sql2);
+		$roleId = $result2['roleId'];
+		if ($roleId == 1){ // Clerk Property Custodian / Admin
+			$_SESSION['roleId'] = $roleId;
+			$_SESSION['accId'] = $result['accId'];
 			$_SESSION["login_user"]="1";
-			header("location:homeTest.php");
+			header("location:user_admin/dashboard.php");
 		}
-		else	
-		{
-			$msg = 'Invalid Email or Password, please try again';
-			header("location:login.php?err=".$msg);
-
+		else if ($roleId == 2) { // Head Department / User
+			$_SESSION['roleId'] = $roleId;
+			$_SESSION['accId'] = $result['accId'];
+			$_SESSION["login_user"]="1";
+			header("location:user_head_department/dashboard.php");
+		} else if ($roleId == 3){ // Auditor / User
+			$_SESSION['roleId'] = $roleId;
+			$_SESSION['accId'] = $result['accId'];
+			$_SESSION["login_user"]="1";
+			header("location:user_auditor/dashboard.php");
+		} else if ($roleId == 4){ // Assistant of Clerk / User
+			$_SESSION['roleId'] = $roleId;
+			$_SESSION['accId'] = $result['accId'];
+			$_SESSION["login_user"]="1";
+			header("location:user_assistant_pc/dashboard.php");
 		}
+		
 	}
+	else	
+	{
+		$msg = 'Invalid Email or Password, please try again';
+		header("location:login.php?err=".$msg);
+
+	}
+	mysqli_free_result($result);
+	mysqli_free_result($result2);
+	mysqli_close($conn);
+}
 
 /*
 	if(isset($_REQUEST['submit']))

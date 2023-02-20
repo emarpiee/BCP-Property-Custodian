@@ -1,7 +1,3 @@
-<?php 
-
-    $dir = realpath("testFile.php");
-
-    echo $dir;
-
+<?php
+echo $_SERVER['HTTP_HOST'];
 ?>
