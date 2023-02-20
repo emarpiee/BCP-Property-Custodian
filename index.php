@@ -13,10 +13,8 @@ require_once('config.php');
 	<title>Test DB Connection Page</title>
 </head>
 <body>
-	<center>
-		<a href="login.php" class="btn btn-primary" role="button">Go to BCP Property Custodian Login Page</a>
-	</center>
-	
-
+ <?php
+ 	header('location:login.php');
+ ?>
 </body>
 </html>
