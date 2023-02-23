@@ -25,26 +25,24 @@
 		<div class="m-auto p-5 p-lg-5">
 			<p class="display-5 text-center">
 				<strong>Privacy Policy</strong>
+			</p>
 
-				<hr>
+			<hr>
 
-				<p class="text-muted">
-					<em>February 23, 2023</em>
-				</p>
-				<h3 class="lead">
-					We take your privacy seriously at BCP Property Custodian Website. This policy explains how we collect, use, and protect your personal information.
-				</h3>
+			<p class="text-muted">
+				<em>February 23, 2023</em>
+			</p>
+			<h3 class="lead">
+				We take your privacy seriously at BCP Property Custodian Website. This policy explains how we collect, use, and protect your personal information.
+			</h3>
 
-				<br>
+			<br>
 
-				<h4>Information We Collect</h4>
-				
-				<p>
-					We collect information you provide when you register for an account, fill out a contact form, make an item requests, or make an item reports. This may include your name, email address, contact number, and other relevant informations.
-				</p>
-				<!-- <p>We also automatically collect information when you use our website, such as your IP address, browser type, and operating system.</p> -->
-			</ol>
+			<h4>Information We Collect</h4>
 
+			<p>
+				We collect information you provide when you register for an account, fill out a contact form, make an item requests, or make an item reports. This may include your name, email address, contact number, and other relevant informations.
+			</p>
 			<br>
 
 			<h4>How We Protect Your Information</h4>
@@ -53,33 +51,24 @@
 				We use industry-standard security measures to protect your personal information from unauthorized access, disclosure, alteration, or destruction.
 			</p>
 			<br>
+			<h4>Changes to this Policy</h4>
+			<p>
+				We may update this policy from time to time. We will notify you of any material changes by posting the new policy on our website.
+			</p>
 
-				<!-- <h4>Cookies</h4>
-				
-					<p>
-						We use cookies and similar technologies to improve your experience on our website and to analyze how it is used. You can disable cookies in your browser settings, but this may affect your ability to use some features of our website.
-					</p>
-				</ol>
-
-				<br> -->
-
-				<h4>Changes to this Policy</h4>
-				<p>
-					We may update this policy from time to time. We will notify you of any material changes by posting the new policy on our website.
-				</p>
-			</ol>
 
 			<br>
 
 			<h4>Contact us</h4>
 			<p>
-				If you have any questions or concerns about this policy, please contact us at BCP.PropertyCustodian@samplEmail.com.
+				If you have any questions or concerns about this policy, please contact us at email@samplEmail.com.
 			</p>
-		</ol>
-		<hr>
-		<p class="text-muted text-center lead">Copyright &copy; 2023 The BCP Property Custodian Developer Team. All rights reserved.</p>
-	</div">
-</section>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+			<hr>
+			<p class="text-muted text-center lead">Copyright &copy; 2023 The BCP Property Custodian Developer Team. All rights reserved.</p>
+
+		</div>
+	</section>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>
