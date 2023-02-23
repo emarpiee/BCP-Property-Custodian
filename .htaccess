@@ -6,16 +6,16 @@ ErrorDocument 404 /error/404.html
 ErrorDocument 500 /error/500.html
 
 # Will remove php extenstion from the url, note: open RewriteEngine on once
-RewriteEngine on
-RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]
-RewriteRule ^ /%1 [NC,L,R]
+# RewriteEngine on
+# RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]
+# RewriteRule ^ /%1 [NC,L,R]
  
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^ %{REQUEST_URI}.php [NC,L]
+# RewriteCond %{REQUEST_FILENAME}.php -f
+# RewriteRule ^ %{REQUEST_URI}.php [NC,L]
 
 # Will remove html extension from the url
-RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
-RewriteRule ^ /%1 [NC,L,R]
+# RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+# RewriteRule ^ /%1 [NC,L,R]
  
-RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^ %{REQUEST_URI}.html [NC,L]
+# RewriteCond %{REQUEST_FILENAME}.html -f
+# RewriteRule ^ %{REQUEST_URI}.html [NC,L]
