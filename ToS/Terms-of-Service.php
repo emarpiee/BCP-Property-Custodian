@@ -15,7 +15,7 @@
 </head>
 <body style="font-family: Calibri;">
 	
-	<section class="container txt-justify" >
+	<section class="container txt-justify lead" >
 		<?php 
 	include('../modals/modalDisclaimer.html');
 	?>
