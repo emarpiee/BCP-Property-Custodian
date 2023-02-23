@@ -19,6 +19,7 @@ if(isset($_SESSION['login_user'])){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet"/>
     <title>Login to BCP Porperty Custodian</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/bcp-logo.png">
 </head>
 <body>
     <div class="loginContainer">
@@ -29,7 +30,7 @@ if(isset($_SESSION['login_user'])){
                 </div>
                 <div class="polygon2"></div>
             </div>
-            <div class="form-container d-flex justify-content-center w-100 p-5 p-lg-5">
+            <div class="form-container d-flex justify-content-center w-100 p-1 p-lg-5">
                 <div class="mt-1 px-5">
                     <div class="form-header1 ps-2 mb-5">
                         <h1 class="header1 fw-bold fs-1 m-0">BCP</h1>
@@ -37,23 +38,17 @@ if(isset($_SESSION['login_user'])){
                     </div>
                     
                     <form action="session.php" method="POST">
-                        <span class="loginLineBreak my-3"></span>
+                        <span class="loginLineBreak my-4"></span>
                         <div class="form-floating mb-3">
-                            <!-- <label htmlFor="exampleInputEmail1" class="form-label fw-semibold fs-6">
-                                Email
-                            </label> -->
                             <input type="email" class="form-control" id="floatingEmail"  name="email" placeholder="Enter Email Address here" />
                             <label for="floatingEmail">Email Address</label>
                         </div>
                         <div class="mb-3">
-                            <!-- <label class="form-label fw-semibold fs-6">
-                                Password
-                            </label> -->
                             <div>
                                 <div class="form-floating">
-                                    <input type="password" class="form-control" required name="password"  id="floatingPassword"
+                                    <input type="password" class="form-control" required name="password"  id="inputPassword"
                                     placeholder="Enter Password here"/>
-                                    <label for="floatingPassword">Password</label>
+                                    <label for="inputPassword">Password</label>
                                     <i class="fa-solid fa-eye-slash" id="passwordIconId"></i>
                                 </div>
                             </div>
@@ -77,7 +72,7 @@ if(isset($_SESSION['login_user'])){
             </div>
         </div>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script>
         let showPassword = document.querySelector("#passwordIconId");
