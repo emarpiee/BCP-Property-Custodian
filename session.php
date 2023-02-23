@@ -5,9 +5,10 @@ if(isset($_POST['submit']))
 {
 	$email = mysqli_real_escape_string($conn,$_POST['email']);
 	$pass = mysqli_real_escape_string($conn,$_POST['password']); 
+	$statusId = 2; //1 = PENDING, 2 = ACTIVE, 3 = ARCHIVED
 
 	//check if email and pass is in database, if so, store that array of data in a variable
-	$sql = mysqli_query($conn,"SELECT * FROM pc_accounts where userEmail='$email'and userPass='$pass'");
+	$sql = mysqli_query($conn,"SELECT * FROM pc_accounts INNER JOIN pc_account_status ON pc_accounts.`accountStatus` = pc_account_status.`statusId` WHERE userEmail='$email' AND userPass='$pass' AND statusId = '$statusId'");
 	$result=mysqli_fetch_array($sql);
 	
 	if($result)
@@ -18,33 +19,38 @@ INNER JOIN pc_user_role
 ON pc_accounts.`roleId` = pc_user_role.`roleId` WHERE accId = '$accId' ");
 		$result2 = mysqli_fetch_array($sql2);
 		$roleId = $result2['roleId'];
-		if ($roleId == 1){ // Clerk Property Custodian / Admin
+		if ($roleId == 1){ // REDIRECT TO PC HEAD / ADMIN DASHBOARD
 			$_SESSION['roleId'] = $roleId;
 			$_SESSION['accId'] = $result['accId'];
 			$_SESSION["login_user"]="1";
-			header("location:user_admin/dashboard.php");
+			header("location:user_pc_head_admin/dashboard.php");
 		}
-		else if ($roleId == 2) { // Head Department / User
+		else if ($roleId == 2) { // REDIRECT TO PC CLERK DASHBOARD
+			$_SESSION['roleId'] = $roleId;
+			$_SESSION['accId'] = $result['accId'];
+			$_SESSION["login_user"]="1";
+			header("location:user_pc_clerk/dashboard.php");
+		} else if ($roleId == 3){ // REDIRECT TO OTHER HEAD DEPARTMENT DASHBOARD
 			$_SESSION['roleId'] = $roleId;
 			$_SESSION['accId'] = $result['accId'];
 			$_SESSION["login_user"]="1";
 			header("location:user_head_department/dashboard.php");
-		} else if ($roleId == 3){ // Auditor / User
+		} else if ($roleId == 4){ // REDIRECT TO PC AUDITOR DASHBOARD
 			$_SESSION['roleId'] = $roleId;
 			$_SESSION['accId'] = $result['accId'];
 			$_SESSION["login_user"]="1";
-			header("location:user_auditor/dashboard.php");
-		} else if ($roleId == 4){ // Assistant of Clerk / User
+			header("location:user_pc_auditor/dashboard.php");
+		}	else if ($roleId == 5){ // REDIRECT TO PC ASSISTANT DASHBOARD
 			$_SESSION['roleId'] = $roleId;
 			$_SESSION['accId'] = $result['accId'];
 			$_SESSION["login_user"]="1";
-			header("location:user_assistant_pc/dashboard.php");
+			header("location:user_pc_assistant/dashboard.php");
 		}
 		
 	}
 	else	
 	{
-		$msg = 'Invalid Email or Password, please try again';
+		$msg = 'Invalid login credentials, try again.';
 		header("location:login.php?err=".$msg);
 
 	}

@@ -3,28 +3,29 @@ include('../config.php');
 
 session_start ();
 
-$accId = $_SESSION['accId'];
-$sql = mysqli_query($conn,"SELECT * FROM pc_accounts WHERE accId = $accId ");
-$accInfo = mysqli_fetch_array($sql);
-
 if(!isset($_SESSION["login_user"])){
     header("location:../login.php"); 
 }
-if($_SESSION['roleId'] == 2) { // Head Dept
-    header("location:../user_head_department/dashboard.php");
-} else if($_SESSION['roleId'] == 3){ // Auditor
-    header("location:../user_auditor/dashboard.php");
-} else if($_SESSION['roleId'] == 4){ // Assistant
-    header("location:../user_assistant_pc/dashboard.php");
-}
 
+$accId = $_SESSION['accId'];
+$sql = mysqli_query($conn,"SELECT * FROM pc_accounts WHERE accId = $accId ");
+$accInfo = mysqli_fetch_array($sql);
+if($_SESSION['roleId'] == 1) { // PC HEAD
+    header("location:../user_pc_head_admin/dashboard.php");
+} else if($_SESSION['roleId'] == 3){ //Head Department
+    header("location:../user_head_department/dashboard.php");
+} else if($_SESSION['roleId'] == 4){ // PC AUDITOR
+    header("location:../user_pc_auditor/dashboard.php");
+} else if($_SESSION['roleId'] == 5){ // PC ASSISTANT
+    header("location:../user_pc_assistant/dashboard.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard</title>
+    <title>BCP Property Custodian Dashboard</title>
     <link rel="stylesheet" href="../style/main.css" />
     <link rel="stylesheet" href="../style/sidebar.css" />
     <link rel="stylesheet" href="../style/style.css" />
@@ -36,7 +37,7 @@ if($_SESSION['roleId'] == 2) { // Head Dept
 
     <?php include('temps/header.php'); ?>
     <div class="container-fluid">
-        <h3>Welcome CLERK:  <?php echo $accInfo['firstName']." ".$accInfo['lastName'];?>    </h3>
+        <h3>TEST PAGE for PROPERTY CUSTODIAN CLERK: <?php echo $accInfo['firstName']." ".$accInfo['lastName']?>    </h3>
     </div>
     <?php include('temps/footer.php'); ?>
 

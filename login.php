@@ -2,7 +2,7 @@
 //check if the user already logged in, if true always redirect to index
 session_start();
 if(isset($_SESSION['login_user'])){
-    header('location:homeTest.php');
+    header('location:user_admin/dashboard.php');
 } 
 ?>
 
@@ -29,28 +29,31 @@ if(isset($_SESSION['login_user'])){
                 </div>
                 <div class="polygon2"></div>
             </div>
-            <div class="form-container d-flex justify-content-center w-100 p-3 p-lg-5">
-                <div class="m-auto">
+            <div class="form-container d-flex justify-content-center w-100 p-5 p-lg-5">
+                <div class="mt-1 px-5">
                     <div class="form-header1 ps-2 mb-5">
                         <h1 class="header1 fw-bold fs-1 m-0">BCP</h1>
-                        <h1 class="header2 fw-bold fs-1 m-0">PROPERTY CUSTODIAN</h1>
+                        <h1 class="header2 fw-bold fs-2 m-0">PROPERTY CUSTODIAN</h1>
                     </div>
+                    
                     <form action="session.php" method="POST">
-                        <span class="loginLineBreak my-4"></span>
-                        <div class="mb-3">
-                            <label htmlFor="exampleInputEmail1" class="form-label fw-semibold fs-6">
+                        <span class="loginLineBreak my-3"></span>
+                        <div class="form-floating mb-3">
+                            <!-- <label htmlFor="exampleInputEmail1" class="form-label fw-semibold fs-6">
                                 Email
-                            </label>
-                            <input type="email" class="inputField input-form form-control px-3 fs-6 fw-normal"  name="email" placeholder="Enter Email Address here" />
+                            </label> -->
+                            <input type="email" class="form-control" id="floatingEmail"  name="email" placeholder="Enter Email Address here" />
+                            <label for="floatingEmail">Email Address</label>
                         </div>
                         <div class="mb-3">
-                            <label htmlFor="inputPassword" class="form-label fw-semibold fs-6">
+                            <!-- <label class="form-label fw-semibold fs-6">
                                 Password
-                            </label>
-                            <div id="login">
-                                <div class="passwordContainer">
-                                    <input type="password" class="inputField input-form form-control px-3 fs-6 fw-normal" required name="password"  id="inputPassword"
+                            </label> -->
+                            <div>
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" required name="password"  id="floatingPassword"
                                     placeholder="Enter Password here"/>
+                                    <label for="floatingPassword">Password</label>
                                     <i class="fa-solid fa-eye-slash" id="passwordIconId"></i>
                                 </div>
                             </div>
@@ -62,19 +65,20 @@ if(isset($_SESSION['login_user'])){
                         <div class="mt-3 text-center">
                             <?php 
                             if(isset($_REQUEST['err'])){?>
-                                <p class="alert alert-danger text-center" role="alert">
+                                <p class="p-1 alert alert-danger text-center" role="alert">
                                     <?php echo $_REQUEST['err']; ?>
                                 </p>
                             <?php }?>
                         </div>
                         <span class="loginLineBreak my-4"></span>
-                        <span>By using our site, you understand and agree to the BCP Property Custodian's Terms of Service and Policy Statement.</span>
+                        <span>By using our site, you understand and agree to the BCP Property Custodian's <a href="BCPPC-Terms-of-Service.php" target="_blank">Terms of Service</a> and Policy Statement. </span>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script>
         let showPassword = document.querySelector("#passwordIconId");
         const passwordField = document.querySelector("#inputPassword");
