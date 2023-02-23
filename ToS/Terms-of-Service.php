@@ -4,7 +4,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Terms of Service</title>
-	<link rel="stylesheet" type="text/css" href="style/bootstrap.css">
+	<link rel="icon" type="image/x-icon" href="../assets/images/bcp-logo.png">
+	<link rel="stylesheet" type="text/css" href="../style/bootstrap.css">
 	<style>
 		.txt-justify {
 			text-align: justify;
@@ -13,11 +14,14 @@
 	</style>
 </head>
 <body style="font-family: Calibri;">
-	<?php 
-	include('modals/modalDisclaimer.html');
-	?>
+	
 	<section class="container txt-justify" >
-		<img src="assets/images/bcp-logo.png" width="50px" class="float-end">
+		<?php 
+	include('../modals/modalDisclaimer.html');
+	?>
+		<div class="text-center mt-4">
+			<img src="../assets/images/bcp-logo.png" width="70">
+		</div>
 		<div class="m-auto p-5 p-lg-5">
 			<p class="display-5 text-center">
 				<strong>Our Terms of Service</strong>
@@ -27,7 +31,7 @@
 				<p class="text-muted">
 					<em>February 23, 2023</em>
 				</p>
-				<h3 class="lead">Welcome to the BCP Property Custodian Website. The Website is owned and operated by our company. These Terms of Service govern your access to and use of the Website. By accessing or using the Website, you agree to be bound by these Terms.</h3>
+				<h3 class="lead">Welcome to the BCP Property Custodian Website. The Website is owned and operated by the people who developed this website, the Dev Team. These Terms of Service govern your access to and use of the Website. By accessing or using the Website, you agree to be bound by these Terms.</h3>
 
 				<br>
 

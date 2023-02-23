@@ -66,7 +66,7 @@ if(isset($_SESSION['login_user'])){
                             <?php }?>
                         </div>
                         <span class="loginLineBreak my-4"></span>
-                        <span>By using our site, you understand and agree to the BCP Property Custodian's <a href="BCPPC-Terms-of-Service.php" target="_blank">Terms of Service</a> and Policy Statement. </span>
+                        <span>By using our site, you understand and agree to the BCP Property Custodian's <a href="ToS/Terms-of-Service.php" target="_blank">Terms of Service</a> and Policy Statement. </span>
                     </form>
                 </div>
             </div>
