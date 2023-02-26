@@ -40,5 +40,105 @@
 
 	<hr>
 
+
+	<!-- CONTAINERS -->
+
+
+	<div class="container my-5"> <!-- HAS FIXED WIDTH -->
+		<p>Lorem ipsum, dolor sit amet consectetur, adipisicing elit. Cum fugiat alias, quasi quia hic minus est libero quam inventore molestiae blanditiis eligendi, natus odit, facilis ipsum nihil magni consectetur amet.</p>
+		<h2>container</h2>
+	</div>
+	<div class="container-fluid"> <!-- 100% WIDTH -->
+		<p>Lorem ipsum, dolor sit amet consectetur, adipisicing elit. Cum fugiat alias, quasi quia hic minus est libero quam inventore molestiae blanditiis eligendi, natus odit, facilis ipsum nihil magni consectetur amet.</p>
+		<h2>container-fluid</h2>
+	</div>
+	<div class="container-lg my-5"> <!-- 100% WIDTH until large screen -->
+		<p>Lorem ipsum, dolor sit amet consectetur, adipisicing elit. Cum fugiat alias, quasi quia hic minus est libero quam inventore molestiae blanditiis eligendi, natus odit, facilis ipsum nihil magni consectetur amet.</p>
+		<h2>container-lg, 100% width until lg screen, then container</h2>
+	</div>
+	<div class="container-lg"> <!-- 100% WIDTH until extra large screen -->
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis molestias inventore rerum enim veritatis culpa quasi ducimus illum, possimus recusandae unde pariatur aliquam earum maiores! Eaque consequuntur commodi rem, quidem?</p>
+		<h2>container-xl, 100% wdith until xl screen, then container</h2>
+	</div>
+	<!-- CONTAINER END -->
+
+
+	<hr>
+
+	<!-- GRID -->
+	<!-- TAKES 12 COLUMNS EACH ROW -->
+	<div class="container-lg my-5">
+		<h2>Basic Grid</h2>
+		<div class="row">
+			<div class="col">
+				<div class="p-5 bg-primary text-light">col1</div>
+			</div>
+			<div class="col">
+				<div class="p-5 bg-primary text-light">col2</div>
+			</div>
+			<div class="col">
+				<div class="p-5 bg-primary text-light">col3</div>
+			</div>
+			<div class="col">
+				<div class="p-5 bg-primary text-light">col4</div>
+			</div>
+		</div>
+	</div>
+
+	<hr>
+
+	<div class="container-lg my-5">
+		<h2>Column Width</h2>
+		<div class="row">
+			<div class="col-3">
+				<div class="p-5 bg-primary text-light">col1</div>
+			</div>
+			<div class="col-3">
+				<div class="p-5 bg-primary text-light">col2</div>
+			</div>
+			<div class="col-3">
+				<div class="p-5 bg-primary text-light">col3</div>
+			</div>
+			<div class="col-3">
+				<div class="p-5 bg-primary text-light">col4</div>
+			</div>
+		</div>
+	</div>
+
+	<hr>
+
+	<div class="container-lg my-5">
+		<h2>Responsive Column Width</h2>
+		<div class="row">
+			<div class="col-sm-4 col-6"><!-- TAKE 6 COLUMN ON NORMAL SCREEN UNTIL SMAMLL SCREEN THEN TAKE 4 COLUMNS -->
+				<div class="p-5 bg-primary text-light">col1</div>
+			</div>
+			<div class="col-sm-4 col-lg-3">
+				<div class="p-5 bg-primary text-light">col2</div>
+			</div>
+			<div class="col-sm-4 col-lg-3">
+				<div class="p-5 bg-primary text-light">col3</div>
+			</div>
+		</div>
+	</div>
+
+	<hr>
+
+	<div class="container-lg my-5">
+		<h2>Justify Column</h2>
+		<div class="row justify-content-between"> <!-- justify-content-between/start/end/center -->
+			<div class="col-4 col-md-1"> <!-- TAKE 4 COL UNTIL MEDIUM SCREEN THEN TAKE 1 COL -->
+				<div class="p-5 bg-primary text-light">col1</div>
+			</div>
+			<div class="col-4 col-md-1">
+				<div class="p-5 bg-primary text-light">col1</div>
+			</div>
+			<div class="col-4 col-md-1">
+				<div class="p-5 bg-primary text-light">col1</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- GRID END -->
 </body>
 </html>

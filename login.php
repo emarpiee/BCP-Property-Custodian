@@ -13,13 +13,18 @@ if(isset($_SESSION['login_user'])){
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login to BCP Porperty Custodian</title>
     <link rel="stylesheet" href="style/main.css" />
     <link rel="stylesheet" href="style/bootstrap.css" />
     <link rel="stylesheet" href="style/login.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet"/>
-    <title>Login to BCP Porperty Custodian</title>
     <link rel="icon" type="image/x-icon" href="assets/images/bcp-logo.png">
+    <style>
+        .custom-tooltip {
+            --bs-tooltip-bg: var(--bs-secondary);
+        }
+    </style>
 </head>
 <body>
     <div class="loginContainer">
@@ -36,7 +41,6 @@ if(isset($_SESSION['login_user'])){
                         <h1 class="header1 fw-bold fs-1 m-0">BCP</h1>
                         <h1 class="header2 fw-bold fs-2 m-0">PROPERTY CUSTODIAN</h1>
                     </div>
-                    
                     <form action="session.php" method="POST">
                         <span class="loginLineBreak my-4"></span>
                         <div class="form-floating mb-3">
@@ -53,11 +57,10 @@ if(isset($_SESSION['login_user'])){
                                 </div>
                             </div>
                         </div>
-
-                        <button type="submit" class="buttonTemplate sumbit-button btn rounded-2 w-100 mt-3" name="submit">
+                        <button type="submit" class="buttonTemplate sumbit-button btn rounded-2 w-100" name="submit">
                             Log in
                         </button>
-                        <div class="mt-3 text-center">
+                        <div class="mt-2 text-center">
                             <?php 
                             if(isset($_REQUEST['err'])){?>
                                 <p class="p-1 alert alert-danger text-center" role="alert">
@@ -65,26 +68,45 @@ if(isset($_SESSION['login_user'])){
                                 </p>
                             <?php }?>
                         </div>
-                        <span class="loginLineBreak my-4"></span>
-                        <span>By using our site, you understand and agree to the BCP Property Custodian's <a href="ToS/Terms-of-Service.php" target="_blank">Terms of Service</a> and <a href="ps/Policy-Statement.php" target="_blank">Policy Statement</a>. </span>
-                    </form>
-                </div>
+                        <div class="d-flex small">
+                            <a href="#" class="me-auto" style="text-decoration: none;">Forgot your password?</a>
+                            <div class="dropdown" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Account requests are only available to BCP employees. Students who wish to request an account for internship purposes within the BCP Property Custodian should first reach out to the office.">
+                              <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                Request an Account for...
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="Request-Account-Head-Department.php">Head of the Department</a></li>
+                                <li><a class="dropdown-item disabled" href="#">Auditor</a></li>
+                                <li><a class="dropdown-item disabled" href="#">Property Custodian Assistant</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <span class="loginLineBreak my-3"></span>
+                    <span>By using our site, you understand and agree to the BCP Property Custodian's <a href="ToS/Terms-of-Service.php" target="_blank">Terms of Service</a> and <a href="ps/Policy-Statement.php" target="_blank">Policy Statement</a>. </span>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script>
-        let showPassword = document.querySelector("#passwordIconId");
-        const passwordField = document.querySelector("#inputPassword");
-        showPassword.addEventListener("click", function() {
-            this.classList.toggle("fa-eye");
-            const type =
-            passwordField.getAttribute("type") === "password" ?
-            "text" : "password";
-            passwordField.setAttribute("type", type);
-        });
-    </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script>
+
+        //password eye button
+    let showPassword = document.querySelector("#passwordIconId");
+    const passwordField = document.querySelector("#inputPassword");
+    showPassword.addEventListener("click", function() {
+        this.classList.toggle("fa-eye");
+        const type =
+        passwordField.getAttribute("type") === "password" ?
+        "text" : "password";
+        passwordField.setAttribute("type", type);
+    });
+
+        //initialize tooltips
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+</script>
 </body>
 
 </html>
