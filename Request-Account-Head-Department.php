@@ -1,12 +1,12 @@
 <?php 
 include('config.php');
-session_start();
 
-$email = $password = $firstName = $middleInitial = $lastName = $deptName = $deptCampus = "";
+$roleId = 3; // role ID of head department
+$email = $password = $firstName = $middleName = $lastName = $deptName = $deptCampus = "";
 $deptRoom = $contactNumber = 0;
-$errorMsg = array('email' => '', 'password' => '', 'firstName' => '', 'middleInitial' => '', 'lastName' => '', 'deptName' => '', 'deptCampus' => '', 'deptFloor' => '', 'contactNumber' => '');
+$errorMsg = array('email' => '', 'password' => '', 'firstName' => '', 'middleName' => '', 'lastName' => '', 'deptName' => '', 'deptCampus' => '', 'deptRoom' => '', 'contactNumber' => '');
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if(isset($_POST['register'])){
 
 	// check email
 	if(empty($_POST['email'])){
@@ -16,8 +16,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 			$errorMsg['email'] = 'Email must be a valid email address';
 		} else {
-			$sql = "SELECT * FROM pc_accounts WHERE userEmail = '$email'";
-			$result = mysqli_query($conn, $sql);
+			// check email if already exists in database
+			$checkIfExist = "SELECT * FROM pc_accounts WHERE userEmail = '$email'";
+			$result = mysqli_query($conn, $checkIfExist);
 			if(mysqli_num_rows($result)){
 				$errorMsg['email'] = 'Email already exists!';
 			}
@@ -29,8 +30,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		$errorMsg['password'] = 'Password is required <br />';
 	} else {
 		$password = $_POST['password'];
-		if(!filter_var($password, FILTER_VALIDATE_EMAIL)){
-			$errorMsg['password'] = 'Password must be a valid Email Address';
+		if(strlen($password) < 8 && strlen($password) >= 128){
+			$errorMsg['password'] = 'Password must be 8 characters long!';
 		}
 	}
 
@@ -46,16 +47,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 	}
 
-	// check middle initial
-	if(strlen($_POST['middleInitial']) > 1 || empty($_POST['middleInitial'])){
-		$errorMsg['middleInitial'] = 'Invalid input!';
-	}else {
-		$middleInitial = $_POST['middleInitial'];
-			// REGEX for letters and spaces only '/^[a-zA-Z\s]+$/'
-		if(!preg_match('/^[a-zA-Z\s]+$/', $middleInitial)){
-			$errorMsg['middleInitial'] = 'Middle initial must be a letter only!';
-		}
-
+	// check middle name
+	if(!preg_match('/^[a-zA-Z\s]+$/', $_POST['middleName'])){
+		$errorMsg['middleName'] = 'Middle name must be letters and spaces only!';
+	} else {
+		$middleName = $_POST['middleName'];
 	}
 
 	// check last name
@@ -74,10 +70,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	if(empty($_POST['deptName'])){
 		$errorMsg['deptName'] = 'Department name is required!';
 	}else {
-		$deptName = $_POST['deptName'];
+		$deptName = rtrim($_POST['deptName']);
 			// REGEX for letters and spaces only '/^[a-zA-Z\s]+$/'
 		if(!preg_match('/^[a-zA-Z\s]+$/', $deptName)){
 			$errorMsg['deptName'] = 'Department name must be letters and spaces only!';
+		} else {
+			// check if dept already exists in database
+			$checkIfExist2 = "SELECT * FROM pc_accounts WHERE deptName = '$deptName'";
+			$result2 = mysqli_query($conn, $checkIfExist2);
+			if(mysqli_num_rows($result2)){
+				$errorMsg['deptName'] = 'Department already exists!';
+			}
 		}
 
 	}
@@ -107,8 +110,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	// check contact number
 	if(is_int($_POST['contactNumber'])){
 		$contactNumber = $_POST['contactNumber'];
-		if($contactNumber <= 100 && $contactNumber >= 551){
-			$errorMsg['contactNumber'] = 'Room not found!';
+		if($contactNumber < 10 && $contactNumber > 13){
+			$errorMsg['contactNumber'] = 'Invalid contact number!';
 		}
 	}
 
@@ -116,17 +119,32 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	if(array_filter($errorMsg)){
 		// error
 	} else {
-
+		// valid form
 		// escapes sepcial characters
-		$email = mysqli_real_escape_string($_POST['email']);
-		$password = mysqli_real_escape_string($_POST['password']);
-		$firstName = mysqli_real_escape_string($_POST['firstName']);
-		$middleInitial = mysqli_real_escape_string($_POST['middleInitial']);
-		$lastName = mysqli_real_escape_string($_POST['lastName']);
-		$email = mysqli_real_escape_string($_POST['email']);
-		$deptCampus = mysqli_real_escape_string($_POST['deptCampus']);
+		$email = mysqli_real_escape_string($conn, $_POST['email']);
+		$password = mysqli_real_escape_string($conn, $_POST['password']);
+		$firstName = mysqli_real_escape_string($conn, $_POST['firstName']);
+		$middleName = mysqli_real_escape_string($conn, $_POST['middleName']);
+		$lastName = mysqli_real_escape_string($conn, $_POST['lastName']);
+		$deptName = mysqli_real_escape_string($conn, $_POST['deptName']);
+		$deptCampus = mysqli_real_escape_string($conn, $_POST['deptCampus']);
 		$deptRoom = $_POST['deptRoom'];
 		$contactNumber = $_POST['contactNumber'];
+
+		// if no errors in form, insert data account table
+		$insertData = "INSERT INTO pc_accounts (userEmail, userPass, firstName, middleName, lastName, deptName, deptCampus, deptRoom, contactNumber, roleId) VALUES ('$email', '$password', '$firstName', '$middleName', '$lastName', '$deptName', 'deptCampus', '$deptRoom', '$contactNumber', '$roleId')";
+
+		if(mysqli_query($conn, $insertData)){
+			$_POST = array();
+			$email = $password = $firstName = $middleName = $lastName = $deptName = $deptCampus = "";
+			$deptRoom = $contactNumber = 0;
+			$errorMsg = array('email' => '', 'password' => '', 'firstName' => '', 'middleName' => '', 'lastName' => '', 'deptName' => '', 'deptCampus' => '', 'deptRoom' => '', 'contactNumber' => '');
+			echo "ACCOUN REQUEST SUBMITTED TO THE BCP PROPERTY CUSTODIAN DEPARTMENT";
+			
+		}  else {
+				// error
+			echo 'query error' . mysqli_error($conn);
+		}
 
 	}
 
@@ -175,7 +193,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 					<h5 class="separator mb-4">Head of the Department Registration Form</h5>
 					<!-- REGISTRATION FORM -->
-					<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> <!-- anti XSS -->
+					<form method="POST" action="Request-Account-Head-Department.php">
 						<?php include('forms/Account-Form.php'); ?>
 						<div class="row justify-content-center gap-5">
 							<button type="submit" class=" col-5 btn btn-primary" name="register">
@@ -216,6 +234,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			} 
 
 		});
+
+
+
+
 
 	</script>
 </body>

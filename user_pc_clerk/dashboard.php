@@ -36,9 +36,8 @@ if($_SESSION['roleId'] == 1) { // PC HEAD
 <body>
 
     <?php include('temps/header.php'); ?>
-    <div class="container-fluid">
-        <h3>TEST PAGE for PROPERTY CUSTODIAN CLERK: <?php echo $accInfo['firstName']." ".$accInfo['lastName']?>    </h3>
-    </div>
+    
+
     <?php include('temps/footer.php'); ?>
 
 </body>

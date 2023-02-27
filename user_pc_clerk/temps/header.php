@@ -13,24 +13,25 @@
                 </li>
 
                 <div class="d-flex align-items-center justify-content-end">
-                  <li>
-                    <div class="nav-item dropdown my-auto ms-4">
-                        <a id="dropdownmenu" class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <h4 class="lean"><?php echo $accInfo['firstName']." ".$accInfo['lastName']?></h4>
+                    <!-- <li>
+                        <div class="nav-item dropdown my-auto ms-4">
+                            <a id="dropdownmenu" class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 
-                            <i class="bi bi-person-circle ms-0 ms-sm-3" style="width: 32; height: 32;"></i>
-                        </a>
-                        <ul class="dropdown-menu border shadow dropdownContainer">
-                                <!-- <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                                <i class="bi bi-person-circle ms-0 ms-sm-3" style="width: 32; height: 32;"></i>
+                            </a>
+                            <ul class="dropdown-menu border shadow dropdownContainer">
+                                <li><a class="dropdown-item" href="#">Edit Profile</a></li>
                                 <li><a class="dropdown-item" href="#">Settings</a></li>
                                 <li>
                                     <hr class="dropdown-divider" />
-                                </li> -->
+                                </li>
                                 <li>
-                                    <a class="dropdown-item" href="../logout.php">Logout</a>
+                                    <a class="dropdown-item" href="logout.php">Logout</a>
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> -->
                 </div>
             </div>
         </ul>
@@ -44,7 +45,7 @@
                     </li>
                     <!-- DASHBOARD BUTTON -->
                     <li>
-                        <a>
+                        <a href="dashboard.php">
                             <i class="bx bx-grid-alt"></i>
                             <span class="links_name">Dashboard</span>
                         </a>
@@ -59,7 +60,7 @@
                         <span class="tooltip">Request an Item</span>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="Item-Requests.php">
                             <i class="bx bx-package"></i>
                             <span class="links_name">Item Requests</span>
                         </a>
@@ -74,14 +75,22 @@
                     </li>
                     <span class="lineBreak"></span>
                     <li>
-                        <a href="#">
-                           <i class="bi bi-people"></i>
-                           <span class="links_name">Accounts</span>
-                       </a>
-                       <span class="tooltip">Accounts</span>
-                   </li>
-               </ul>
-           </div>
-           <section class="home-section mx-3 bg-light rounded shadow">
-            <div class="container-fluid mt-3">
+                        <a href="Account-Requests.php">
+                         <i class="bi bi-people"></i>
+                         <span class="links_name">Accounts</span>
+                     </a>
+                     <span class="tooltip">Accounts</span>
+                 </li>
+                 <span class="lineBreak"></span>
+                 <li>
+                    <a href="../logout.php">
+                        <i class="bi bi-box-arrow-in-left"></i>
+                     <span class="links_name">Logout</span>
+                 </a>
+                 <span class="tooltip">Logout</span>
+             </li>
+         </ul>
+     </div>
+     <section class="home-section mx-3 bg-light rounded shadow">
+        <div class="container-fluid mt-3">
 
