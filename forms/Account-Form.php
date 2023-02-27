@@ -54,19 +54,9 @@
                   <label for="DN">Department Name</label>
                 </div>
               </div>
-            </div>
-            <div class="row mb-3">
 
-              <!-- DEPARTMENT ROOM -->
-              <div class="col">
-                <div class="form-floating">
-                  <input type="number" min="100" max="550" class="form-control" id="DR" name="deptRoom" placeholder="Department Room" required>
-                  <label for="DR">Department Room</label>
-                </div>
-              </div>
-
-              <!-- CAMPUS -->
-              <div class="col-8">
+               <!-- CAMPUS -->
+              <div class="col-6">
                 <select class="form-select" aria-label="Campus" name="deptCampus" required>
                   <option value="">Campus...</option>
                   <option value="MV Campus">BCP MV Campus</option>
@@ -77,4 +67,26 @@
                 </select>
               </div>
             </div>
+
+
+            <div class="row mb-3">
+
+              <!-- DEPARTMENT ROOM -->
+              <div class="col">
+                <div class="form-floating">
+                  <input type="number" min="100" max="550" class="form-control" id="DR" name="deptRoom" placeholder="Department Room" required>
+                  <label for="DR">Department Room</label>
+                </div>
+              </div>
+
+
+              <!-- CONTACT NUMBER -->
+              <div class="col">
+                <div class="form-floating">
+                  <input type="number" min="11" max="11" class="form-control" id="CN" name="contactNumber" placeholder="Contact Number" required>
+                  <label for="CN">Contact Number</label>
+                </div>
+              </div>
+            </div>
+
 </div>
