@@ -28,7 +28,7 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Item Requests</title>
+	<title>Account Records</title>
     <link rel="stylesheet" href="../style/sidebar.css" />
     <link rel="stylesheet" href="../style/style.css" />
     <link rel="stylesheet" href="../style/main.css" />
@@ -41,21 +41,25 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 <body>
     <?php include('temps/header.php'); ?>
-    <table class="table table-striped table-bordered">
-      <thead>
-          <tr>
-            <th scope="col">Account ID</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Department</th>
-            <th scope="col">Campus</th>
-            <th scope="col">Room#</th>
-            <th scope="col">Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
+    
+    <div class="card">
+       <div class="card-body">
+        <table class="table table-striped table-bordered">
+          <thead>
+              <tr>
+                <th scope="col">Account ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Department</th>
+                <th scope="col">Campus</th>
+                <th scope="col">Room#</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
             foreach ($rows as $row)
             {
                 ?>
@@ -68,32 +72,37 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     <td><?php echo $row['deptCampus'];?></td>
                     <td><?php echo $row['deptRoom'];?></td>
                     <td><?php echo $row['statusName'];?></td>
-                <?php
-            }
-        ?>
-        </tbody>
+                    <td>
+                        <a class="btn btn-primary" href="#">View</a>  
+                    </td>
+                    <?php
+                }
+                ?>
+            </tbody>
 
-    </table>
+        </table>
+    </div>
+</div>
 
-    <?php include('temps/footer.php'); ?>
+<?php include('temps/footer.php'); ?>
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script>
     // initialize tooltips
-        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
         // prevent user from using F12 (inspect element)
-        $(document).keydown(function(e){ 
-            if(e.which === 123){ 
+    $(document).keydown(function(e){ 
+        if(e.which === 123){ 
 
-                return false; 
+            return false; 
 
-            } 
+        } 
 
-        });
-    </script>
+    });
+</script>
 </body>
 </html>

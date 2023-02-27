@@ -1,12 +1,9 @@
-<?php
-include('../config.php'); 
-
-session_start ();
-
+<?php 
+include('../config.php');
+session_start();
 if(!isset($_SESSION["login_user"])){
     header("location:../login.php"); 
 }
-
 $accId = $_SESSION['accId'];
 $sql = mysqli_query($conn,"SELECT * FROM pc_accounts WHERE accId = $accId ");
 $accInfo = mysqli_fetch_array($sql);
@@ -19,26 +16,40 @@ if($_SESSION['roleId'] == 1) { // PC HEAD
 } else if($_SESSION['roleId'] == 5){ // PC ASSISTANT
     header("location:../user_pc_assistant/dashboard.php");
 }
+
+$sql = "SELECT * FROM pc_items JOIN pc_item_type ON pc_items.`itemTypeId` = pc_item_type.`itemTypeId`";
+$result = mysqli_query($conn, $sql);
+$rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+mysqli_close($conn);
 ?>
+
 <!DOCTYPE html>
+<html>
 <html oncontextmenu="return false"  lang="en"> <!-- prevent user from right clicking -->
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BCP Property Custodian Dashboard</title>
-    <link rel="stylesheet" href="../style/main.css" />
-    <link rel="stylesheet" href="../style/sidebar.css" />
-    <link rel="stylesheet" href="../style/style.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Title</title>
+    <link rel="stylesheet" href="style/sidebar.css" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/main.css" />
+    <link rel="stylesheet" href="style/bootstrap.css" />
+    <link rel="stylesheet" href="style/login.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet"/>
+    <link rel="icon" type="image/x-icon" href="assets/images/bcp-logo.png">
 </head>
 <body>
+
     <?php include('temps/header.php'); ?>
 
-
+        
 
     <?php include('temps/footer.php'); ?>
+
+
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script>
     // initialize tooltips
@@ -54,14 +65,6 @@ if($_SESSION['roleId'] == 1) { // PC HEAD
             } 
 
         });
-
-    //initialize modal
-        const myModal = document.getElementById('myModal')
-        const myInput = document.getElementById('myInput')
-
-        myModal.addEventListener('shown.bs.modal', () => {
-          myInput.focus()
-      })
-  </script>
+    </script>
 </body>
 </html>

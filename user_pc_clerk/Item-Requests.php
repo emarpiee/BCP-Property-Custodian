@@ -17,7 +17,7 @@ if($_SESSION['roleId'] == 1) { // PC HEAD
     header("location:../user_pc_assistant/dashboard.php");
 }
 
-$sql = "SELECT * FROM pc_item_requests JOIN pc_accounts ON pc_item_requests.`requestorId` = pc_accounts.`accId` JOIN pc_items ON pc_item_requests.`itemID` = pc_items.`itemID` LEFT JOIN pc_item_request_status ON pc_item_requests.`statusOfRequestId` = pc_item_request_status.`statusOfRequestId`";
+$sql = "SELECT * FROM pc_item_requests JOIN pc_accounts ON pc_item_requests.`requestorId` = pc_accounts.`accId` JOIN pc_items ON pc_item_requests.`itemID` = pc_items.`itemID` LEFT JOIN pc_item_request_status ON pc_item_requests.`statusOfRequestId` = pc_item_request_status.`statusOfRequestId` JOIN pc_item_type ON pc_items.`itemTypeId` = pc_item_type.`itemTypeId`";
 $result = mysqli_query($conn, $sql);
 $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
 mysqli_close($conn);
@@ -42,18 +42,21 @@ mysqli_close($conn);
 
 <body>
     <?php include('temps/header.php'); ?>
-    <table class="table table-striped table-bordered">
+    
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped table-bordered">
       <thead>
           <tr>
             <th scope="col">Request ID</th>
             <th scope="col">Item</th>
-            <th scope="col">Description</th>
-            <th scope="col">Quantit</th>
+            <th scope="col">Item Type</th>
             <th scope="col">Requested By</th>
             <th scope="col">Department</th>
             <th scope="col">Room#</th>
             <th scope="col">Campus</th>
             <th scope="col">Status</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -64,17 +67,16 @@ mysqli_close($conn);
             <tr>
                 <td><?php echo $row['requestID'];?></td>
                 <td><?php echo $row['itemName'];?></td>
-                <td><?php echo $row['requestDescription'];?></td>
-                <td><?php echo $row['itemQuantity'];?></td>
-                <td><?php echo $row['lastName'];?></td>
+                <td><?php echo $row['itemTypeName'];?></td>
+                <td><?php echo $row['firstName'] . " " .$row['lastName'];?></td>
                 <td><?php echo $row['deptName'];?></td>
                 <td><?php echo $row['deptRoom'];?></td>
                 <td><?php echo $row['deptCampus'];?></td>
                 <td>
-
-
                     <?php echo $row['itemStatusType'];?>
                 </td>
+                <td><a class="btn btn-primary" href="#">Details</a> </td>
+
             </tr>
             <?php
         }
@@ -82,34 +84,36 @@ mysqli_close($conn);
     </tbody>
 
 </table>
+            </div>
+        </div>
 
-<?php include('temps/footer.php'); ?>
+    <?php include('temps/footer.php'); ?>
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-<script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script>
     // initialize tooltips
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
         // prevent user from using F12 (inspect element)
-    $(document).keydown(function(e){ 
-        if(e.which === 123){ 
+        $(document).keydown(function(e){ 
+            if(e.which === 123){ 
 
-            return false; 
+                return false; 
 
-        } 
+            } 
 
-    });
+        });
 
     //initialize modal
-    const myModal = document.getElementById('myModal')
-    const myInput = document.getElementById('myInput')
+        const myModal = document.getElementById('myModal')
+        const myInput = document.getElementById('myInput')
 
-    myModal.addEventListener('shown.bs.modal', () => {
-      myInput.focus()
-  })
-</script>
+        myModal.addEventListener('shown.bs.modal', () => {
+          myInput.focus()
+      })
+  </script>
 </body>
 </html>

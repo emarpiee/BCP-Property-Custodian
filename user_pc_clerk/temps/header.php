@@ -1,4 +1,4 @@
-    <main class="container-lg container-xl container-xxl">
+    <main class="container-fluid">
         <ul class="topbar m-0 list-unstyled">
             <div class="topbarChild d-flex justify-content-between align-items-center">
                 <li class="topBarLogo text-dark">
@@ -52,45 +52,65 @@
                         <span class="tooltip">Dashboard</span>
                     </li>
                     <span class="lineBreak"></span>
+
+
                     <li>
-                        <a href="#">
+                      <div class="iocn-link arrow">
+                        <a>
                             <i class="bi bi-send"></i>
                             <span class="links_name">Request an Item</span>
                         </a>
-                        <span class="tooltip">Request an Item</span>
-                    </li>
-                    <li>
-                        <a href="Item-Requests.php">
-                            <i class="bx bx-package"></i>
-                            <span class="links_name">Item Requests</span>
-                        </a>
-                        <span class="tooltip">Item Requests</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-flag"></i>
-                            <span class="links_name">Item Reports</span>
-                        </a>
-                        <span class="tooltip">Item Reports</span>
-                    </li>
-                    <span class="lineBreak"></span>
-                    <li>
-                        <a href="Account-Requests.php">
-                         <i class="bi bi-people"></i>
-                         <span class="links_name">Accounts</span>
-                     </a>
-                     <span class="tooltip">Accounts</span>
-                 </li>
-                 <span class="lineBreak"></span>
-                 <li>
-                    <a href="../logout.php">
-                        <i class="bi bi-box-arrow-in-left"></i>
-                     <span class="links_name">Logout</span>
+                        <i class="bx bx-chevron-down arrow"></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a href="Request-Item-Consumable.php">CONSUMABLES</a></li>
+                        <li><a href="#">NON-CONSUMABLES</a></li>
+                        <li><a href="#">SPECIFY REQUEST</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="Item-Requests.php">
+                        <i class="bx bx-package"></i>
+                        <span class="links_name">Item Requests</span>
+                    </a>
+                    <span class="tooltip">Item Requests</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="bi bi-flag"></i>
+                        <span class="links_name">Item Reports</span>
+                    </a>
+                    <span class="tooltip">Item Reports</span>
+                </li>
+                <span class="lineBreak"></span>
+
+                <li>
+                  <div class="iocn-link arrow">
+                    <a>
+                     <i class="bi bi-people"></i>
+                     <span class="links_name">Accounts</span>
                  </a>
-                 <span class="tooltip">Logout</span>
-             </li>
-         </ul>
-     </div>
-     <section class="home-section mx-3 bg-light rounded shadow">
-        <div class="container-fluid mt-3">
+                 <i class="bx bx-chevron-down arrow"></i>
+             </div>
+             <ul class="sub-menu">
+                <li><a href="Account-Records.php">Account Records</a></li>
+                <li><a href="Pending-Accounts.php">Pending Accounts</a></li>
+                <li><a href="Add-Department-Account.php">Add Department</a></li>
+                <li><a href="#">Add Assistant</a></li>
+            </ul>
+        </li>
+
+        <span class="lineBreak"></span>
+        <li>
+            <a href="../logout.php">
+                <i class="bi bi-box-arrow-in-left"></i>
+                <span class="links_name">Logout</span>
+            </a>
+            <span class="tooltip">Logout</span>
+        </li>
+    </ul>
+</div>
+<section class="home-section mx-3 bg-light rounded shadow">
+    <div class="container-fluid mt-3">
 
