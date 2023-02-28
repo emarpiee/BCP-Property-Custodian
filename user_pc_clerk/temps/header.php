@@ -13,27 +13,40 @@
                 </li>
 
                 <div class="d-flex align-items-center justify-content-end">
-                    <h4 class="lean"><?php echo $accInfo['firstName']." ".$accInfo['lastName']?></h4>
-                    <!-- <li>
-                        <div class="nav-item dropdown my-auto ms-4">
-                            <a id="dropdownmenu" class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-
-                                <i class="bi bi-person-circle ms-0 ms-sm-3" style="width: 32; height: 32;"></i>
-                            </a>
-                            <ul class="dropdown-menu border shadow dropdownContainer">
-                                <li><a class="dropdown-item" href="#">Edit Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li>
-                                    <hr class="dropdown-divider" />
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="logout.php">Logout</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li> -->
-                </div>
-            </div>
+            <li>
+              <i class="bx bxs-message-dots fs-4 me-3 mt-1 m-0"></i>
+              <i class="bx bxs-bell fs-4 mt-1 m-0"></i>
+            </li>
+            <li>
+              <div class="nav-item dropdown my-auto ms-4">
+                <a
+                  id="dropdownmenu"
+                  class="nav-link dropdown-toggle d-flex align-items-center"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <h4 class="lean"><?php echo $accInfo['firstName']." ".$accInfo['lastName']?></h4>
+                  <img
+                    class="ms-0 ms-sm-3"
+                    src="../assets/icons/profile-icon.png"
+                    width="32"
+                    height="32"
+                    alt="profile-picture"
+                  />
+                </a>
+                <ul class="dropdown-menu border shadow dropdownContainer">
+                  <!-- <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><hr class="dropdown-divider" /></li> -->
+                  <li>
+                    <a class="dropdown-item" href="#">Logout</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </div>
         </ul>
         <div class="px-0 d-xl-flex position-relative d-flex">
             <div class="sidebar close rounded shadow">
@@ -63,8 +76,8 @@
                         <i class="bx bx-chevron-down arrow"></i>
                     </div>
                     <ul class="sub-menu">
-                        <li><a href="Request-Item-Consumable.php">CONSUMABLES</a></li>
-                        <li><a href="#">NON-CONSUMABLES</a></li>
+                        <li><a href="Request-Consumable-Item.php">CONSUMABLES</a></li>
+                        <li><a href="Request-Non-Consumable-Item.php">NON-CONSUMABLES</a></li>
                         <li><a href="#">SPECIFY REQUEST</a></li>
                     </ul>
                 </li>

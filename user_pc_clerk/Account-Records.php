@@ -40,9 +40,10 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
 </head>
 
 <body>
+    
     <?php include('temps/header.php'); ?>
     
-    <div class="card">
+    <div class="card position-absolute">
        <div class="card-body">
         <table class="table table-striped table-bordered">
           <thead>
