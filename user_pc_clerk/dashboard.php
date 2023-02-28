@@ -38,7 +38,7 @@ if($_SESSION['roleId'] == 1) { // PC HEAD
     <?php include('temps/header.php'); ?>
 
     <div class="row gap-3">
-        <div class="card col-sm m-3">
+        <div class="card col-sm m-3 ">
             <div class="card-body">
                 <h5 class="text-uppercase">Mission</h5>
                 <p>

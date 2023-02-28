@@ -16,15 +16,15 @@ if($_SESSION['roleId'] == 1) { // PC HEAD
 } else if($_SESSION['roleId'] == 5){ // PC ASSISTANT
     header("location:../user_pc_assistant/dashboard.php");
 }
-if(isset($_GET['id'])){
+if(isset($_GET['requestID'])){
 
         //escaping any sensitve sql character to protect db
-    $id = mysqli_real_escape_string($conn,$_GET['id']);
+    $requestID = mysqli_real_escape_string($conn,$_GET['requestID']);
 
-    $sql2 = "UPDATE pc_accounts SET accountStatus = 2 WHERE accId = '$id' "; 
+    $sql2 = "UPDATE pc_item_requests SET statusOfRequestId = 3 WHERE requestID = '$requestID' "; // 3 = decline
     if(mysqli_query($conn, $sql2)){
-        echo 'activated';
-        header("location:Account-Records.php"); 
+        echo 'approved';
+        header("location:Item-Records.php"); 
     }  else {
                 // error
         echo 'query error' . mysqli_error($conn);

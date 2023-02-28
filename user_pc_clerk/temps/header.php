@@ -5,7 +5,7 @@
                     <div class="logo-details d-flex align-items-center">
                         <i class="bx bx-menu rounded-circle" id="btn"></i>
                         <img class="ms-2 ms-sm-3 my-auto" src="../assets/images/bcp-logo.png" width="35" height="35" alt="bcp-logo" />
-                        <div class="logo_name text-dark ms-1 ms-sm-3">Property Custodian | Clerk</div>
+                        <div class="logo_name text-dark ms-1 ms-sm-3">PROPERTY CUSTODIAN | Clerk</div>
                         <div class="my-auto search-boxContainer d-none d-lg-block">
                             <input type="text" class="form-control search-box" type="search" placeholder="Search..." aria-label="Example text with button addon" aria-describedby="button-addon1" />
                         </div>
@@ -27,7 +27,7 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <h4 class="lean"><?php echo $accInfo['firstName']." ".$accInfo['lastName']?></h4>
+                  <h5 class="lean"><?php echo $accInfo['firstName']." ".$accInfo['lastName']?></h5>
                   <img
                     class="ms-0 ms-sm-3"
                     src="../assets/icons/profile-icon.png"
@@ -83,11 +83,17 @@
                 </li>
 
                 <li>
-                    <a href="Item-Requests.php">
+                      <div class="iocn-link arrow">
+                        <a>
                         <i class="bx bx-package"></i>
                         <span class="links_name">Item Requests</span>
                     </a>
-                    <span class="tooltip">Item Requests</span>
+                        <i class="bx bx-chevron-down arrow"></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a href="Item-Records.php">Item Records</a></li>
+                        <li><a href="Pending-Requests.php">Pending Requests</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="#">

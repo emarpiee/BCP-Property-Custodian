@@ -93,7 +93,7 @@ if(isset($_GET['requestItem'])){
 
     <?php include('temps/header.php'); ?>
 
-    <div class="card">
+    <div class="card position-absolute">
         <div class="card-body">
             <h5 class="separator mb-4">Consumable Item</h5>
             <form action="Request-Consumable-Item.php" method="GET">

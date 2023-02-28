@@ -4,20 +4,21 @@ session_start();
 if(!isset($_SESSION["login_user"])){
     header("location:../login.php"); 
 }
+
 $accId = $_SESSION['accId'];
 $sql = mysqli_query($conn,"SELECT * FROM pc_accounts WHERE accId = $accId ");
 $accInfo = mysqli_fetch_array($sql);
-if($_SESSION['roleId'] == 1) { // PC HEAD
+if($_SESSION['roleId'] == 1){ // PC HEAD
     header("location:../user_pc_head_admin/dashboard.php");
-} else if($_SESSION['roleId'] == 3){ //Head Department
-    header("location:../user_head_department/dashboard.php");
+} else if($_SESSION['roleId'] == 2) { // PC CLERK
+    header("location:../user_pc_clerk/dashboard.php");
 } else if($_SESSION['roleId'] == 4){ // PC AUDITOR
     header("location:../user_pc_auditor/dashboard.php");
 } else if($_SESSION['roleId'] == 5){ // PC ASSISTANT
     header("location:../user_pc_assistant/dashboard.php");
 }
 
-$sql = "SELECT * FROM pc_items JOIN pc_item_type ON pc_items.`itemTypeId` = pc_item_type.`itemTypeId` WHERE pc_items.`itemTypeId` = 2"; /*non-consumables id = 2 */
+$sql = "SELECT * FROM pc_items JOIN pc_item_type ON pc_items.`itemTypeId` = pc_item_type.`itemTypeId` WHERE pc_items.`itemTypeId` = 1"; /*consumables id = 1 */
 $result = mysqli_query($conn, $sql);
 $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
 mysqli_free_result($result);
@@ -77,7 +78,7 @@ if(isset($_GET['requestItem'])){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Request Non-Consumable Item</title>
+    <title>Request Consumable Item</title>
     <link rel="stylesheet" href="../style/sidebar.css" />
     <link rel="stylesheet" href="../style/style.css" />
     <link rel="stylesheet" href="../style/main.css" />
@@ -95,7 +96,7 @@ if(isset($_GET['requestItem'])){
 
     <div class="card position-absolute">
         <div class="card-body">
-            <h5 class="separator mb-4">Non-Consumable Item</h5>
+            <h5 class="separator mb-4">Consumable Item</h5>
             <form action="Request-Consumable-Item.php" method="GET">
                 <div class="row mb-3 gap-2">
                     <div class="col-sm-2">
