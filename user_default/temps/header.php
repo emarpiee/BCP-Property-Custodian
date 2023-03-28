@@ -1,4 +1,4 @@
-    <main class="container-lg">
+    <main class="container-lg container-xl container-xxl">
         <ul class="topbar m-0 list-unstyled">
             <div class="topbarChild d-flex justify-content-between align-items-center">
                 <li class="topBarLogo text-dark">

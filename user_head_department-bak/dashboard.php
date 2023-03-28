@@ -1,5 +1,5 @@
 <?php
-include('../config.php'); 
+/*include('../config.php'); 
 
 session_start ();
 
@@ -19,7 +19,7 @@ if($_SESSION['roleId'] == 1){ // PC HEAD
 } else if($_SESSION['roleId'] == 5){ // PC ASSISTANT
     header("location:../user_pc_assistant/dashboard.php");
 }
-
+*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,10 +37,13 @@ if($_SESSION['roleId'] == 1){ // PC HEAD
 <body>
 
     <?php include('temps/header.php'); ?>
-    <div class="container-fluid">
-        <h3>TEST PAGE for HEAD DEPARTMENT: <?php echo $accInfo['firstName']." ".$accInfo['lastName']?>    </h3>
-    </div>
-    <?php include('temps/footer.php'); ?>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      Launch static backdrop modal
+  </button>
+
+  
+<?php include('temps/footer.php'); ?>
 
 </body>
 </html>

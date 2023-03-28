@@ -37,13 +37,10 @@ if($_SESSION['roleId'] == 2) { // PC CLERK
 <body>
 
     <?php include('temps/header.php'); ?>
-    <div id="displayDataTable"></div>
+    <div class="container-fluid">
+        <h3>TEST PAGE for PROPERTY CUSTODIAN HEAD-ADMIN: <?php echo $accInfo['firstName']." ".$accInfo['lastName']?>    </h3>
+    </div>
     <?php include('temps/footer.php'); ?>
-    <?php include('index.php'); ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="script.js"></script>
+
 </body>
 </html>

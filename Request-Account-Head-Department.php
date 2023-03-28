@@ -132,7 +132,7 @@ if(isset($_POST['register'])){
 		$contactNumber = $_POST['contactNumber'];
 
 		// if no errors in form, insert data account table
-		$insertData = "INSERT INTO pc_accounts (userEmail, userPass, firstName, middleName, lastName, deptName, deptCampus, deptRoom, contactNumber, roleId) VALUES ('$email', '$password', '$firstName', '$middleName', '$lastName', '$deptName', 'deptCampus', '$deptRoom', '$contactNumber', '$roleId')";
+		$insertData = "INSERT INTO pc_accounts (userEmail, userPass, firstName, middleName, lastName, deptName, deptCampus, deptRoom, contactNumber, roleId) VALUES ('$email', '$password', '$firstName', '$middleName', '$lastName', '$deptName', '$deptCampus', '$deptRoom', '$contactNumber', '$roleId')";
 
 		if(mysqli_query($conn, $insertData)){
 			$_POST = array();
