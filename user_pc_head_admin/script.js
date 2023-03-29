@@ -5,7 +5,7 @@ $(document).ready(function () {
 function displayData() {
   var displayData = "true";
   $.ajax({
-    url: "display.php",
+    url: "Display-Item-Records.php",
     type: "POST",
     data: {
       displaySend: displayData,
@@ -36,20 +36,22 @@ function addUser() {
   });
 }
 
-function getUser(updateUserID) {
-  $("#hiddenData").val(updateUserID);
+function getData(updateRequestID) {
+  $("#hiddenData").val(updateRequestID);
   $.post(
-    "update.php",
+    "Update-Item-Records.php",
     {
-      updateUserID: updateUserID,
+      updateRequestID: updateRequestID,
     },
     function (data, status) {
-      var userID = JSON.parse(data);
-      $("#firstNameEdit").val(userID.FirstName);
-      $("#lastNameEdit").val(userID.LastName);
-      $("#emailEdit").val(userID.Email);
-      $("#mobileEdit").val(userID.Mobile);
-    }
+      var reqID = JSON.parse(data);
+      $("#updateRequestNo").val(reqID.requestID);
+      $("#updateItemName").val(reqID.itemName);
+      $("#updateItemQuantity").val(reqID.itemQuantity);
+      $("#updateFullName").val(reqID.firstName + " " + reqID.lastName);
+      $("#updateDeptName").val(reqID.deptName);
+      $("#updateDeptLoc").val("Room " + reqID.deptRoom + ", " + reqID.deptCampus);
+    } 
   );
   $("#updateModal").modal("show");
 }

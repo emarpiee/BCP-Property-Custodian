@@ -23,7 +23,7 @@ if($_SESSION['roleId'] == 2) { // PC CLERK
 ?>
 <!DOCTYPE html>
 <html>
-<head>
+<html oncontextmenu="return false"  lang="en"> <!-- prevent user from right clicking -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BCP Property Custodian Dashboard</title>
@@ -37,13 +37,7 @@ if($_SESSION['roleId'] == 2) { // PC CLERK
 <body>
 
     <?php include('temps/header.php'); ?>
-    <div id="displayDataTable"></div>
+
     <?php include('temps/footer.php'); ?>
-    <?php include('index.php'); ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="script.js"></script>
 </body>
 </html>

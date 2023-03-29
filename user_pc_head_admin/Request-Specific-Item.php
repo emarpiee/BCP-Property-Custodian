@@ -1,3 +1,24 @@
+<?php 
+include('../config.php');
+session_start();
+if(!isset($_SESSION["login_user"])){
+    header("location:../login.php"); 
+}
+
+$accId = $_SESSION['accId'];
+$sql = mysqli_query($conn,"SELECT * FROM pc_accounts WHERE accId = $accId ");
+$accInfo = mysqli_fetch_array($sql);
+if($_SESSION['roleId'] == 2){ // PC CLERK
+    header("location:../user_pc_head_admin/dashboard.php");
+} else if($_SESSION['roleId'] == 2) { // PC CLERK
+    header("location:../user_pc_clerk/dashboard.php");
+} else if($_SESSION['roleId'] == 4){ // PC AUDITOR
+    header("location:../user_pc_auditor/dashboard.php");
+} else if($_SESSION['roleId'] == 5){ // PC ASSISTANT
+    header("location:../user_pc_assistant/dashboard.php");
+}
+
+?>
 <!DOCTYPE html>
 <html oncontextmenu="return false"  lang="en"> <!-- prevent user from right clicking -->
 <head>
@@ -16,6 +37,19 @@
     <link rel="icon" type="image/x-icon" href="../assets/images/bcp-logo.png">
 </head>
 <body>
+    <?php include('temps/header.php'); ?>
+
+        <div class="card">
+            <h5 class="separator mb-4">REQUEST SPECIFIC ITEM</h5>
+            <div class="card-body">
+                <form>
+                    
+                </form>
+            </div>
+        </div>
+
+    <?php include('temps/footer.php'); ?>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

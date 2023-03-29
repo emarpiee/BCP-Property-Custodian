@@ -2,7 +2,17 @@
 //check if the user already logged in, if true always redirect to index
 session_start();
 if(isset($_SESSION['login_user'])){
-    header('location:user_admin/dashboard.php');
+    if($_SESSION['roleId'] == 1) { // PC HEAD
+        header("location:user_pc_head_admin/dashboard.php");
+} else if($_SESSION['roleId'] == 2){ //PC CLERK
+    header("location:user_pc_clerk/dashboard.php");
+} else if($_SESSION['roleId'] == 3){ //Head Department
+    header("location:user_head_department/dashboard.php");
+} else if($_SESSION['roleId'] == 4){ // PC AUDITOR
+    header("location:user_pc_auditor/dashboard.php");
+} else if($_SESSION['roleId'] == 5){ // PC ASSISTANT
+    header("location:user_pc_assistant/dashboard.php");
+}
 } 
 ?>
 <!DOCTYPE html>
