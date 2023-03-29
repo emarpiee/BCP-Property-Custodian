@@ -97,12 +97,12 @@
                     </li>
                     <span class="lineBreak"></span>
                     <li>
-                        <a href="#">
-                         <i class="bi bi-people"></i>
-                         <span class="links_name">Accounts</span>
-                     </a>
-                     <span class="tooltip">Accounts</span>
-                 </li>
+            <a href="../logout.php">
+                <i class="bi bi-box-arrow-in-left"></i>
+                <span class="links_name">Logout</span>
+            </a>
+            <span class="tooltip">Logout</span>
+        </li>
              </ul>
          </div>
          <section class="home-section mx-3 bg-light rounded shadow">
