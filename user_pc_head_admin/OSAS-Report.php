@@ -99,13 +99,13 @@ if(isset($_GET['submitChanges'])){
                 </tbody>
 
             </table>
-            <div>
+            <!-- <div>
                 <center>
                     <button type="submit" class=" col-5 btn btn-primary mt-5" name="submitChanges">
                         Save Changes
                     </button>
                 </center>
-            </div>
+            </div> -->
         </form>
     </div>
 </div>
