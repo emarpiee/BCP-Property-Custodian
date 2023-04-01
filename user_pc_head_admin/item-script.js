@@ -41,7 +41,7 @@ function getData(updateRequestID) {
   $.post(
     "Update-Item-Records.php",
     {
-      updateRequestID: updateRequestID,
+      updateRequestID: updateRequestID
     },
     function (data, status) {
       var reqID = JSON.parse(data);
@@ -56,20 +56,15 @@ function getData(updateRequestID) {
   $("#updateModal").modal("show");
 }
 
-function updateUser() {
-  var firstNameEdit = $("#firstNameEdit").val();
-  var lastNameEdit = $("#lastNameEdit").val();
-  var emailEdit = $("#emailEdit").val();
-  var mobileEdit = $("#mobileEdit").val();
-  var hiddenData = $("#hiddenData").val();
+
+function updateData() {
+  $("#hiddenData").val(updateRequestID);
+  var updateItemQuantity = $("#updateItemQuantity").val();
   $.post(
-    "update.php",
+    "Update-Item-Records.php",
     {
-      firstNameEdit: firstNameEdit,
-      lastNameEdit: lastNameEdit,
-      emailEdit: emailEdit,
-      mobileEdit: mobileEdit,
-      hiddenData: hiddenData,
+      updateItemQuantity: updateItemQuantity,
+      updateRequestID: updateRequestID,
     },
     function (data, status) {
       displayData();

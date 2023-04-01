@@ -71,7 +71,7 @@
                         <label for="updateItemQuantity" class="col-sm-3 col-form-label">Quantity</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="updateItemQuantity" name="itemQuantity"
-                                placeholder="Item quantity..." disabled readonly>
+                                placeholder="Item quantity...">
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -98,7 +98,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-outline-dark" onclick="updateUser()">Update</button> -->
+                    <button type="button" class="btn btn-outline-dark" onclick="updateData()">Update</button>
                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
                     <input type="hidden" id="hiddenData">
                 </div>

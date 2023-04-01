@@ -42,7 +42,7 @@ if(isset($_POST['displaySend'])){
         <td>'.$firstName." ".$lastName.'</td>
         <td>'.$itemStatusType.'</td>
         <td class="gap-2">
-        <button class="btn btn-primary btn-sm" onclick="getData('.$requestID.')">Details</button>
+        <button class="btn btn-primary btn-sm" onclick="getData('.$requestID.')"><i class="bi bi-exclamation-circle"></i></button>
         </td>
         </tr>';
         $number++;

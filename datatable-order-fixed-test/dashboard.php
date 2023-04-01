@@ -19,11 +19,19 @@
     <link rel="icon" type="image/x-icon" href="../assets/images/bcp-logo.png">
 </head>
 <body>
+    <!-- CONTENTS HERE -->
 
 
+    <?php include('temps/header.php'); ?>
+
+        <div>
+            <?php include('index.php');?>
+        </div>
+
+    <?php include('temps/footer.php'); ?>
 
 
-
+    <!-- SCRIPTS -->
     <script src="../script/jquery-3.6.4.min.js" crossorigin="anonymous"></script>
     <script src="../script/bootstrap.bundle.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../script/datatables.min.js"></script>

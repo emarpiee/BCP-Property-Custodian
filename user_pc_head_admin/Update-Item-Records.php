@@ -14,6 +14,14 @@
      $response['status'] =200;
      $response['message'] ="Invalid or data not found";
  }
+
+  if(isset($_POST['updateRequestID'])) {
+     $UniqueID = $_POST['hiddenData'];
+     $itemQuantity = $_POST['updateRequestID'];
+     
+     $sql = "UPDATE pc_item_requests SET itemQuantity ='$itemQuantity' WHERE requestID = '$UniqueID'";
+     $result=mysqli_query($con, $sql);
+ }
 /* if(isset($_POST['hiddenData'])) {
      $UniqueID = $_POST['hiddenData'];
      $FirstName = $_POST['firstNameEdit'];

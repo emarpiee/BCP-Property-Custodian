@@ -43,7 +43,17 @@ if($_SESSION['roleId'] == 2){ // PC CLERK
             <h5 class="separator mb-4">REQUEST SPECIFIC ITEM</h5>
             <div class="card-body">
                 <form>
-                    
+                    <div class="row mb-3 gap-2">
+                        <div>
+                            <div class="form-floating">
+                            <textarea class="form-control" placeholder="Notes / Message" id="MSG" name="itemMessage" style="resize: none;" value="<?php echo htmlspecialchars($itemMessage); ?>"></textarea>
+                            <label for="MSG">Notes / Message</label>
+                            <p class="small text-danger m-auto px-1">
+                            <?php echo $errorMsg['itemMessage']; ?>
+                    </p>
+                </div>
+            </div>
+                    </div>
                 </form>
             </div>
         </div>
