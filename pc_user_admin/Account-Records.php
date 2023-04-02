@@ -1,4 +1,25 @@
-<?php include('../config.php'); ?>
+<?php
+include('../config.php'); 
+
+session_start ();
+
+if(!isset($_SESSION["login_user"])){
+  header("location:../login.php"); 
+}
+
+$accId = $_SESSION['accId'];
+$sql = mysqli_query($conn,"SELECT * FROM pc_accounts WHERE accId = $accId ");
+$accInfo = mysqli_fetch_array($sql);
+if($_SESSION['userRole'] == 'Property Custodian Clerk') { // PC CLERK
+  header("location:../user_pc_clerk/dashboard.php");
+} else if($_SESSION['userRole'] == 'Head of the Department'){ //Head Department
+  header("location:../user_head_department/dashboard.php");
+} else if($_SESSION['userRole'] == 'Property Custodian Auditor'){ // PC AUDITOR
+  header("location:../user_pc_auditor/dashboard.php");
+} else if($_SESSION['userRole'] == 'Property Custodian Assistant'){ // PC ASSISTANT
+  header("location:../user_pc_assistant/dashboard.php");
+}
+?>
 <!doctype html>
 <html lang="en">
 
@@ -6,7 +27,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Title</title>
+  <title>Department Accounts | Admin</title>
   <!-- STYLESHEETS -->
   <link rel="stylesheet" href="../style/sidebar.css" />
   <link rel="stylesheet" href="../style/style.css" />
@@ -32,7 +53,7 @@
 <body>
 
   <!-- CONTENTS -->
-  <?php include('Data-Modal.php'); ?>
+  <?php include('user-data-modal.php'); ?>
   <?php include('temps/header.php') ?>
   <div class="card m-4">
     <div class="card-header p-3">
@@ -43,26 +64,23 @@
         <p class="datatable design text-center"></p>
         <div class="row">
           <div class="container">
-            <!-- <div class="btnAdd">
-              <a href="#!" data-id="" data-bs-toggle="modal" data-bs-target="#addUserModal" class="btn btn-primary btn-sm">Add User</a>
-            </div> -->
             <div class="row container-fluid justify-content-center">
               <!-- <div class="col-sm"></div> -->
-              <div class="col-sm-auto">
-                <table id="example" class="table  table-hover">
+              <div class="col-md-auto">
+                <table id="example" class="table table-hover">
                   <thead>
                     <th>ID</th>
                     <th>DEPT. NAME</th>
-                    <th>ACCOUNT STATUS</th>
-                    <th>ACTIONS</th>
+                    <th>STATUS</th>
+                    <th>ACTION</th>
                   </thead>
                   <tbody>
                   </tbody>
                   <tfoot>
                     <th>ID</th>
                     <th>DEPT. NAME</th>
-                    <th>ACCOUNT STATUS</th>
-                    <th>ACTIONS</th>
+                    <th>STATUS</th>
+                    <th>ACTION</th>
                   </tfoot>
                 </table>
               </div>
@@ -93,7 +111,7 @@
         'paging': 'true',
         'order': [],
         'ajax': {
-          'url': 'fetch_data.php',
+          'url': 'fetch-user-data.php',
           'type': 'post',
         },
         "aoColumnDefs": [{
@@ -105,39 +123,6 @@
       });
     });
 
-    // ADD DATA
-    $(document).on('submit', '#addUser', function(e) {
-      e.preventDefault();
-      var firstName = $('#fnameField').val();
-      var lastName = $('#lnameField').val();
-      var userEmail = $('#emailField').val();
-      var accStatus = $('#statusField').val();
-      if (firstName != '' && lastName != '' && userEmail != '' && accStatus != '') {
-        $.ajax({
-          url: "add_user.php",
-          type: "post",
-          data: {
-            city: city,
-            username: username,
-            mobile: mobile,
-            email: email
-          },
-          success: function(data) {
-            var json = JSON.parse(data);
-            var status = json.status;
-            if (status == 'true') {
-              mytable = $('#example').DataTable();
-              mytable.draw();
-              $('#addUserModal').modal('hide');
-            } else {
-              alert('failed');
-            }
-          }
-        });
-      } else {
-        alert('Fill all the required fields');
-      }
-    });
 
     // UPDATE DATA
     $(document).on('submit', '#updateData', function(e) {
@@ -154,7 +139,7 @@
       var id = $('#id').val();
       if (deptName != '' && deptRoom != '' && deptCampus != '' && contactNumber != '' && firstName != '' && lastName != '' && userEmail != '' && accStatus != '') {
         $.ajax({
-          url: "update_user.php",
+          url: "update-user-data.php",
           type: "post",
           data: {
             deptName: deptName,
@@ -177,7 +162,7 @@
               // table.cell(parseInt(trid) - 1,2).data(email);
               // table.cell(parseInt(trid) - 1,3).data(mobile);
               // table.cell(parseInt(trid) - 1,4).data(city);
-              var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-primary btn-sm editbtn m-2">Details</a>  <a href="#!"  data-id="' + id + '"  class="btn btn-danger btn-sm deleteBtn">Delete</a></td>';
+              var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-primary btn-sm editbtn m-2">Details</a></td>';
               var row = table.row("[id='" + trid + "']");
               row.row("[id='" + trid + "']").data([id, deptName, accStatus, button]);
               $('#exampleModal').modal('hide');
@@ -212,6 +197,7 @@
           $('#deptRoomField').val(json.deptRoom);
           $('#deptCampusField').val(json.deptCampus);
           $('#contactNumberField').val(json.contactNumber);
+          $('#userRoleField').val(json.userRole);
           $('#fnameField').val(json.firstName);
           $('#lnameField').val(json.lastName);
           $('#emailField').val(json.userEmail);
@@ -223,7 +209,7 @@
     });
 
 
-    // DELETE
+    /*// DELETE
     $(document).on('click', '.deleteBtn', function(event) {
       var table = $('#example').DataTable();
       event.preventDefault();
@@ -252,10 +238,41 @@
       } else {
         return null;
       }
+    })*/
 
-
-
-    })
+    /*// ADD DATA
+    $(document).on('submit', '#addUser', function(e) {
+      e.preventDefault();
+      var firstName = $('#fnameField').val();
+      var lastName = $('#lnameField').val();
+      var userEmail = $('#emailField').val();
+      var accStatus = $('#statusField').val();
+      if (firstName != '' && lastName != '' && userEmail != '' && accStatus != '') {
+        $.ajax({
+          url: "add_user.php",
+          type: "post",
+          data: {
+            city: city,
+            username: username,
+            mobile: mobile,
+            email: email
+          },
+          success: function(data) {
+            var json = JSON.parse(data);
+            var status = json.status;
+            if (status == 'true') {
+              mytable = $('#example').DataTable();
+              mytable.draw();
+              $('#addUserModal').modal('hide');
+            } else {
+              alert('failed');
+            }
+          }
+        });
+      } else {
+        alert('Fill all the required fields');
+      }
+    });*/
   </script>
 </body>
 

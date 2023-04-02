@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h5 class="modal-title m-auto" id="exampleModalLabel">DEPARTMENT's INFORMATION</h5>
+        <h5 class="modal-title" id="exampleModalLabel">DEPARTMENT's INFORMATION</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -32,7 +32,13 @@
           <div class="mb-3 row">
             <label for="deptCampusField" class="col-md-3 form-label">CAMPUS</label>
             <div class="col-md-9">
-              <input type="text" class="form-control" id="deptCampusField" name="deptCampus">
+              <select class="form-select" id="deptCampusField" aria-label="Campus" name="deptCampus">
+                <option value="MV Campus">BCP MV Campus</option>
+                <option value="Main Campus">BCP Main Campus</option>
+                <option value="San Agustin Campus">BCP San Agustin Campus</option>
+                <option value="Bulacan Campus">BCP Bulacan Campus</option>
+                <option value="Marine Campus">BCP Marine Campus</option>
+              </select>
             </div>
           </div>
 
@@ -53,6 +59,21 @@
           </div>
 
           <div class="separator mb-4">HEAD OF THE DEPT. INFORMATION</div>
+
+          <!--  -->
+          <div class="mb-3 row">
+            <label for="userRoleField" class="col-md-3 form-label">USER ROLE</label>
+            <div class="col-md-9">
+              <select class="form-select" id="userRoleField" aria-label="User Role" name="userRole">
+                <option value="Property Custodian Head">Property Custodian Head</option>
+                <option value="Property Custodian Clerk">Property Custodian Clerk</option>
+                <option value="Property Custodian Auditor">Property Custodian Auditor</option>
+                <option value="Head of the Department">Head of the Department</option>
+                <option value="Property Custodian Assistant">Property Custodian Assistant</option>
+              </select>
+            </div>
+          </div>
+
           <!--  -->
           <div class="mb-3 row">
             <label for="fnameField" class="col-md-3 form-label">FIRSTNAME</label>

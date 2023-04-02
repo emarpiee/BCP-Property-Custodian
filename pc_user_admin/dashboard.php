@@ -1,9 +1,31 @@
+<?php
+include('../config.php'); 
+
+session_start ();
+
+if(!isset($_SESSION["login_user"])){
+    header("location:../login.php"); 
+}
+
+$accId = $_SESSION['accId'];
+$sql = mysqli_query($conn,"SELECT * FROM pc_accounts WHERE accId = $accId ");
+$accInfo = mysqli_fetch_array($sql);
+if($_SESSION['userRole'] == 'Property Custodian Clerk') { // PC CLERK
+    header("location:../user_pc_clerk/dashboard.php");
+} else if($_SESSION['userRole'] == 'Head of the Department'){ //Head Department
+    header("location:../user_head_department/dashboard.php");
+} else if($_SESSION['userRole'] == 'Property Custodian Auditor'){ // PC AUDITOR
+    header("location:../user_pc_auditor/dashboard.php");
+} else if($_SESSION['userRole'] == 'Property Custodian Assistant'){ // PC ASSISTANT
+    header("location:../user_pc_assistant/dashboard.php");
+}
+?>
 <!DOCTYPE html>
 <html oncontextmenu="return false"  lang="en"> <!-- prevent user from right clicking -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title</title>
+    <title>Dashboard | Admin</title>
     <!-- STYLESHEETS -->
     <link rel="stylesheet" href="../style/sidebar.css" />
     <link rel="stylesheet" href="../style/style.css" />
@@ -25,7 +47,7 @@
     <?php include('temps/header.php'); ?>
 
         <div>
-            <?php include('index.php');?>
+
         </div>
 
     <?php include('temps/footer.php'); ?>

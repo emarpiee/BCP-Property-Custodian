@@ -24,7 +24,7 @@ if(isset($_POST['search']['value']))
 	$sql .= " OR deptCampus like '%".$search_value."%'";
 	$sql .= " OR contactNumber like '%".$search_value."%'";
 	$sql .= " OR accId like '%".$search_value."%'";
-	$sql .= " OR accountStatus like '%".$search_value."%'";
+	$sql .= " OR accStatus like '%".$search_value."%'";
 /*	$sql .= " OR city like '%".$search_value."%'";*/
 }
 
@@ -68,7 +68,7 @@ while($row = mysqli_fetch_assoc($query))
 	$sub_array[] = $row['deptName'];
 	$sub_array[] = $row['accStatus'];
 
-	$sub_array[] = '<a href="javascript:void();" data-id="'.$row['accId'].'"  class="btn btn-primary btn-sm editbtn m-2" >Details</a>  <a href="javascript:void();" data-id="'.$row['accId'].'"  class="btn btn-danger btn-sm deleteBtn" >Delete</a>';
+	$sub_array[] = '<a href="javascript:void();" data-id="'.$row['accId'].'"  class="btn btn-primary btn-sm editbtn m-2" >Details</a>';
 	$data[] = $sub_array;
 }
 
