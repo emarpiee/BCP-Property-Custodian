@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="../style/sidebar.css" />
   <link rel="stylesheet" href="../style/style.css" />
   <link rel="stylesheet" href="../style/main.css" />
-  <link rel="stylesheet" href="../style/bootstrap.css" />
-  <link rel="stylesheet" href="../style/dt-1.13.4.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
   <link rel="stylesheet" href="../style/login.css" />
   <link rel="stylesheet" href="../style/separator.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
@@ -35,19 +35,21 @@
   <?php include('Data-Modal.php'); ?>
   <?php include('temps/header.php') ?>
   <div class="card m-4">
+    <div class="card-header p-3">
+      <h2 class="text-center">Department Accounts</h2>
+    </div>
     <div class="card-body">
       <div class="container-fluid">
-        <h2 class="text-center">Account Records</h2>
         <p class="datatable design text-center"></p>
         <div class="row">
           <div class="container">
-            <div class="btnAdd">
+            <!-- <div class="btnAdd">
               <a href="#!" data-id="" data-bs-toggle="modal" data-bs-target="#addUserModal" class="btn btn-primary btn-sm">Add User</a>
-            </div>
+            </div> -->
             <div class="row container-fluid justify-content-center">
               <!-- <div class="col-sm"></div> -->
               <div class="col-sm-auto">
-                <table id="example" class="table row-border hover">
+                <table id="example" class="table  table-hover">
                   <thead>
                     <th>ID</th>
                     <th>DEPT. NAME</th>
@@ -56,6 +58,12 @@
                   </thead>
                   <tbody>
                   </tbody>
+                  <tfoot>
+                    <th>ID</th>
+                    <th>DEPT. NAME</th>
+                    <th>ACCOUNT STATUS</th>
+                    <th>ACTIONS</th>
+                  </tfoot>
                 </table>
               </div>
               <!-- <div class="col-sm"></div> -->
@@ -66,11 +74,14 @@
     </div>
   </div>
   <?php include('temps/footer.php') ?>
-  <!-- Optional JavaScript; choose one of the two! -->
-  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <!-- CONTENT END -->
+
+
+  <!-- SCRIPTS -->
   <script src="../script/jquery-3.6.4.min.js" crossorigin="anonymous"></script>
   <script src="../script/bootstrap.bundle.js" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="../script/datatables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
       $('#example').DataTable({
@@ -131,17 +142,25 @@
     // UPDATE DATA
     $(document).on('submit', '#updateData', function(e) {
       e.preventDefault();
+      var deptName = $('#deptNameField').val().toUpperCase();
+      var deptRoom = $('#deptRoomField').val();
+      var deptCampus = $('#deptCampusField').val();
+      var contactNumber = $('#contactNumberField').val();
       var firstName = $('#fnameField').val();
       var lastName = $('#lnameField').val();
       var userEmail = $('#emailField').val();
       var accStatus = $('#statusField').val();
       var trid = $('#trid').val();
       var id = $('#id').val();
-      if (firstName != '' && lastName != '' && userEmail != '' && accStatus != '') {
+      if (deptName != '' && deptRoom != '' && deptCampus != '' && contactNumber != '' && firstName != '' && lastName != '' && userEmail != '' && accStatus != '') {
         $.ajax({
           url: "update_user.php",
           type: "post",
           data: {
+            deptName: deptName,
+            deptRoom: deptRoom,
+            deptCampus: deptCampus,
+            contactNumber: contactNumber,
             firstName: firstName,
             lastName: lastName,
             userEmail: userEmail,
@@ -158,9 +177,9 @@
               // table.cell(parseInt(trid) - 1,2).data(email);
               // table.cell(parseInt(trid) - 1,3).data(mobile);
               // table.cell(parseInt(trid) - 1,4).data(city);
-              var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-info btn-sm editbtn">Details</a>  <a href="#!"  data-id="' + id + '"  class="btn btn-danger btn-sm deleteBtn">Delete</a></td>';
+              var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-primary btn-sm editbtn m-2">Details</a>  <a href="#!"  data-id="' + id + '"  class="btn btn-danger btn-sm deleteBtn">Delete</a></td>';
               var row = table.row("[id='" + trid + "']");
-              /*row.row("[id='" + trid + "']").data([id, firstName, lastName, userEmail, accStatus, button]);*/
+              row.row("[id='" + trid + "']").data([id, deptName, accStatus, button]);
               $('#exampleModal').modal('hide');
             } else {
               alert('failed');
@@ -188,6 +207,11 @@
         type: 'post',
         success: function(data) {
           var json = JSON.parse(data);
+          $('#idField').val(json.accId);
+          $('#deptNameField').val(json.deptName);
+          $('#deptRoomField').val(json.deptRoom);
+          $('#deptCampusField').val(json.deptCampus);
+          $('#contactNumberField').val(json.contactNumber);
           $('#fnameField').val(json.firstName);
           $('#lnameField').val(json.lastName);
           $('#emailField').val(json.userEmail);

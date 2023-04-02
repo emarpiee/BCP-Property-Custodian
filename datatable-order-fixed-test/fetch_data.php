@@ -18,7 +18,11 @@ if(isset($_POST['search']['value']))
 {
 	$search_value = $_POST['search']['value'];
 	$sql .= " WHERE firstName like '%".$search_value."%'";
+	$sql .= " OR lastName like '%".$search_value."%'";
 	$sql .= " OR deptName like '%".$search_value."%'";
+	$sql .= " OR deptRoom like '%".$search_value."%'";
+	$sql .= " OR deptCampus like '%".$search_value."%'";
+	$sql .= " OR contactNumber like '%".$search_value."%'";
 	$sql .= " OR accId like '%".$search_value."%'";
 	$sql .= " OR accountStatus like '%".$search_value."%'";
 /*	$sql .= " OR city like '%".$search_value."%'";*/
