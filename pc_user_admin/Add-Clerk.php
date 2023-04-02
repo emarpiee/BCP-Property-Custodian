@@ -20,11 +20,10 @@ if($_SESSION['userRole'] == 'Property Custodian Clerk') { // PC CLERK
   header("location:../user_pc_assistant/dashboard.php");
 }
 
-// validate form
-$roleId = 3; // role ID of head department
-$email = $password = $firstName = $middleName = $lastName = $deptName = $deptCampus = "";
-$deptRoom = $contactNumber = 0;
-$errorMsg = array('email' => '', 'password' => '', 'firstName' => '', 'middleName' => '', 'lastName' => '', 'deptName' => '', 'deptCampus' => '', 'deptRoom' => '', 'contactNumber' => '');
+
+$email = $password = $firstName = $lastName = "";
+$contactNumber = 0;
+$errorMsg = array('email' => '', 'password' => '', 'firstName' => '', 'lastName' => '', 'contactNumber' => '');
 
 if(isset($_POST['register'])){
 
@@ -79,45 +78,6 @@ if(isset($_POST['register'])){
 
     }
 
-    // check department name
-    if(empty($_POST['deptName'])){
-        $errorMsg['deptName'] = 'Department name is required!';
-    }else {
-        $deptNameRaw = rtrim($_POST['deptName']);
-        $deptName = strtoupper($deptNameRaw);
-            // REGEX for letters and spaces only '/^[a-zA-Z\s]+$/'
-        if(!preg_match('/^[a-zA-Z\s]+$/', $deptName)){
-            $errorMsg['deptName'] = 'Department name must be letters and spaces only!';
-        } else {
-            // check if dept already exists in database
-            $checkIfExist2 = "SELECT * FROM pc_accounts WHERE deptName = '$deptName'";
-            $result2 = mysqli_query($conn, $checkIfExist2);
-            if(mysqli_num_rows($result2)){
-                $errorMsg['deptName'] = 'Department already exists!';
-            }
-        }
-
-    }
-
-
-
-    // check department room number
-    if(empty($_POST['deptRoom'])){
-        $errorMsg['deptRoom'] = 'Department Room is required!';
-    } else if(is_int($_POST['deptRoom'])){
-        $deptRoom = $_POST['deptRoom'];
-        if($deptRoom <= 100 && $deptRoom >= 551){
-            $errorMsg['deptRoom'] = 'Room not found!';
-        }
-    }
-
-    // check contact number
-    if(is_int($_POST['contactNumber'])){
-        $contactNumber = $_POST['contactNumber'];
-        if($contactNumber < 10 && $contactNumber > 13){
-            $errorMsg['contactNumber'] = 'Invalid contact number!';
-        }
-    }
 
     // executes if any errors found in form
     if(array_filter($errorMsg)){
@@ -125,24 +85,24 @@ if(isset($_POST['register'])){
     } else {
         // valid form
         // escapes sepcial characters
-        $userRole = 'Head of the Department';
+        $userRole = 'Property Custodian Clerk';
+        $deptName = "DEPARTMENT OF PROPERTY CUSTODIAN";
+        $deptCampus = "Main Campus";
+        $deptRoom = 101;
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $password = mysqli_real_escape_string($conn, $_POST['password']);
         $firstName = mysqli_real_escape_string($conn, $_POST['firstName']);
         $lastName = mysqli_real_escape_string($conn, $_POST['lastName']);
-        $deptName = strtoupper(mysqli_real_escape_string($conn, $_POST['deptName']));
-        $deptCampus = mysqli_real_escape_string($conn, $_POST['deptCampus']);
-        $deptRoom = $_POST['deptRoom'];
         $contactNumber = $_POST['contactNumber'];
 
         // if no errors in form, insert data account table
-        $insertData = "INSERT INTO pc_accounts (userEmail, userPass, firstName, middleName, lastName, deptName, deptCampus, deptRoom, contactNumber, userRole) VALUES ('$email', '$password', '$firstName', '$middleName', '$lastName', '$deptName', '$deptCampus', '$deptRoom', '$contactNumber', '$userRole')";
+        $insertData = "INSERT INTO pc_accounts (userEmail, userPass, firstName, lastName, deptName, deptCampus, deptRoom, contactNumber, userRole) VALUES ('$email', '$password', '$firstName', '$lastName', '$deptName', '$deptCampus', '$deptRoom', '$contactNumber', '$userRole')";
 
         if(mysqli_query($conn, $insertData)){
             $_POST = array();
             $email = $password = $firstName = $middleName = $lastName = $deptName = $deptCampus = "";
             $deptRoom = $contactNumber = 0;
-            $errorMsg = array('email' => '', 'password' => '', 'firstName' => '', 'middleName' => '', 'lastName' => '', 'deptName' => '', 'deptCampus' => '', 'deptRoom' => '', 'contactNumber' => '');
+            $errorMsg = array('email' => '', 'password' => '', 'firstName' => '', 'lastName' => '', 'contactNumber' => '');
             header("location:Account-Records.php");
 
         }  else {
@@ -160,7 +120,7 @@ if(isset($_POST['register'])){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add Department | Admin</title>
+    <title>Add Clerk</title>
     <link rel="stylesheet" href="../style/sidebar.css" />
     <link rel="stylesheet" href="../style/style.css" />
     <link rel="stylesheet" href="../style/main.css" />
@@ -178,11 +138,11 @@ if(isset($_POST['register'])){
 
     <div class="card">
         <div class="card-header p-3">
-            <h2 class="text-center">Department Registration Form</h2>
+            <h2 class="text-center">Clerk Registration Form</h2>
         </div>
         <div class="card-body">
             <form method="POST" action="">
-                <?php include('forms/Account-Form.php') ?>
+                <?php include('forms/Clerk-Account-Form.php') ?>
                 <div class="row justify-content-center gap-5">
                     <button type="submit" class=" col-5 btn btn-primary" name="register">
                         Submit

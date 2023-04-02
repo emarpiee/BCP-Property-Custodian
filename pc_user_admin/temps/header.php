@@ -40,18 +40,18 @@
                 <ul class="nav-list p-0 m-0">
                     <li class="d-block d-lg-none">
                         <i class="bx bx-search"></i>
-                        <input type="text" placeholder="Search..." />
-                        <span class="tooltip">Search</span>
+                        <input type="text" placeholder="" disabled  readonly />
+                        <span class="tooltip"></span>
                     </li>
                     <!-- DASHBOARD BUTTON -->
                     <li>
-                        <a>
+                        <a href="dashboard.php">
                             <i class="bx bx-grid-alt"></i>
                             <span class="links_name">Dashboard</span>
                         </a>
                         <span class="tooltip">Dashboard</span>
                     </li>
-                    <span class="lineBreak"></span>
+                    
                     <li>
                       <div class="iocn-link arrow">
                         <a>
@@ -61,67 +61,78 @@
                         <i class="bx bx-chevron-down arrow"></i>
                     </div>
                     <ul class="sub-menu">
-                        <li><a href="Request_Consumable.php">CONSUMABLE</a></li>
-                        <li><a href="#">NON-CONSUMABLE</a></li>
-                        <li><a href="#">SPECIFY REQUEST</a></li>
+                        <li><a href="Request-Consumable.php">REQUEST CONSUMABLE</a></li>
+                        <li><a href="Request-Non-Consumable.php"> REQUEST NON-CONSUMABLE</a></li>
+                        <li><a href="Request-Specific.php">SPECIFY REQUEST</a></li>
                     </ul>
-                    </li>
-                    <li>
+                </li>
+
+                <li>
                       <div class="iocn-link arrow">
                         <a>
-                        <i class="bx bx-package"></i>
-                        <span class="links_name">Manage Request</span>
-                    </a>
+                            <i class="bi bi-box-seam"></i>
+                            <span class="links_name">Item Records</span>
+                        </a>
                         <i class="bx bx-chevron-down arrow"></i>
                     </div>
                     <ul class="sub-menu">
-                        <li><a href="#">ALL RECORDS</a></li>
-                    </ul>
-                    <ul class="sub-menu">
-                        <li><a href="#">PENDING REQUESTS</a></li>
+                        <li><a href="Item-Records.php">CONSUMABLE & NON-CONSUMABLE RECORD</a></li>
+                        <li><a href="Item-Specific-Records.php">ITEM-SPECIFIC RECORD</a></li>
                     </ul>
                 </li>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-flag"></i>
-                            <span class="links_name">Item Reports</span>
-                        </a>
-                        <span class="tooltip">Item Reports</span>
-                    </li>
-                    <li>
+
+                <li>
                   <div class="iocn-link arrow">
                     <a>
-                     <i class="bi bi-people"></i>
-                     <span class="links_name">Manage Accounts</span>
-                 </a>
-                 <i class="bx bx-chevron-down arrow"></i>
-             </div>
-             <ul class="sub-menu">
+                       <i class="bi bi-people"></i>
+                       <span class="links_name">Manage Accounts</span>
+                   </a>
+                   <i class="bx bx-chevron-down arrow"></i>
+               </div>
+               <ul class="sub-menu">
                 <li><a href="Account-Records.php">DEPARMENT ACCOUNTS</a></li>
-                <li><a href="Add_Department.php">ADD DEPARTMENT</a></li>
-                <li><a href="#">ADD CLERK</a></li>
-                <li><a href="#">ADD AUDITOR</a></li>
-                <li><a href="#">ADD ASSISTANT</a></li>
+                <li><a href="Add-Department.php">ADD DEPARTMENT</a></li>
+                <li><a href="Add-Clerk.php">ADD CLERK</a></li>
+                <li><a href="Add-Auditor.php">ADD AUDITOR</a></li>
+                <li><a href="Add-Assistant.php">ADD ASSISTANT</a></li>
             </ul>
         </li>
-                    <span class="lineBreak"></span>
-                    <li>
-                        <a href="OSAS-Report.php">
-                            <i class="bi bi-flag"></i>
-                            <span class="links_name">OSAS Facility Report</span>
-                        </a>
-                        <span class="tooltip">OSAS Facility Report</span>
-                    </li>
-                    <span class="lineBreak"></span>
-                    <li>
+
+                <li>
+                    <a href="Inventory.php">
+                        <i class="bi bi-box2-heart"></i>
+                        <span class="links_name">Inventory</span>
+                    </a>
+                    <span class="tooltip">Inventory </span>
+                </li>
+                
+                <li>
+                    <a href="#">
+                        <i class="bi bi-flag"></i>
+                        <span class="links_name">Item Reports</span>
+                    </a>
+                    <span class="tooltip">Item Reports</span>
+                </li>
+                
+                
+        
+        <li>
+            <a href="OSAS-Report.php">
+                <i class="bi bi-card-checklist"></i>
+                <span class="links_name">OSAS Facility Report</span>
+            </a>
+            <span class="tooltip">OSAS Facility Report</span>
+        </li>
+        
+        <li>
             <a href="../logout.php">
                 <i class="bi bi-box-arrow-in-left"></i>
                 <span class="links_name">Logout</span>
             </a>
             <span class="tooltip">Logout</span>
         </li>
-             </ul>
-         </div>
-         <section class="home-section mx-3 bg-light rounded shadow">
-            <div class="container-fluid mt-3">
+    </ul>
+</div>
+<section class="home-section mx-3 bg-light rounded shadow">
+    <div class="container-fluid mt-3">
 

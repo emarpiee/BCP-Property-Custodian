@@ -19,7 +19,7 @@ if($_SESSION['userRole'] == 'Property Custodian Clerk') { // PC CLERK
 }
 
 // $sql = "SELECT * FROM pc_items JOIN pc_item_type ON pc_items.`itemTypeId` = pc_item_type.`itemTypeId` WHERE pc_items.`itemTypeId` = 1";
-$itemCategory = 'consumable';
+$itemCategory = 'non-consumable';
 $sql = "SELECT * FROM logistics_warehouse WHERE quantity > 1 AND category = '$itemCategory'";
 
 $result = mysqli_query($conn, $sql);
@@ -62,13 +62,15 @@ if(isset($_GET['requestItem'])){
         $itemMessage = mysqli_real_escape_string($conn, $_GET['itemMessage']);
         $itemQuantity = mysqli_real_escape_string($conn, $_GET['itemQuantity']);
         $requestorId = $accInfo['accId'];
-
-        $itemName = mysqli_real_escape_string($conn, $rows['productname']);
-
-        /*$sql = "INSERT IGNORE INTO pc_item (itemId, itemName, itemDescription) VALUES ('$stockid', ''"*/
-        $sql = "INSERT INTO pc_item_requests (itemId, itemMessage, itemQuantity, requestorId) VALUES ('$stockid', '$itemMessage', '$itemQuantity', '$requestorId') ";
+        $itemType = $itemCategory;
+        $sql = "INSERT INTO pc_item_requests (itemType, itemId, itemMessage, itemQuantity, requestorId) VALUES ('$itemType','$stockid', '$itemMessage', '$itemQuantity', '$requestorId') ";
         if(mysqli_query($conn, $sql)){
-                // success
+            $_GET = array();
+            $errorMsg = array('itemMessage' => '', 'stockid' => '', 'itemQuantity' => '');
+            $stockid = 0;
+            $itemMessage = '';
+            $itemQuantity = 0;
+            header('location: Request-Non-Consumable.php');
         }  else {
                 // error
             echo 'query error' . mysqli_error($conn);
@@ -84,7 +86,7 @@ if(isset($_GET['requestItem'])){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Consumable Request Form | Admin</title>
+    <title>Non-Consumable Request Form | Admin</title>
     <link rel="stylesheet" href="../style/sidebar.css" />
     <link rel="stylesheet" href="../style/style.css" />
     <link rel="stylesheet" href="../style/main.css" />
@@ -101,19 +103,21 @@ if(isset($_GET['requestItem'])){
     <?php include('temps/header.php'); ?>
 
     <div class="card">
+        <div class="card-header p-3">
+            <h2 class="text-center">Request Item Non-Consumable</h2>
+        </div>  
         <div class="card-body">
-            <h5 class="separator mb-4">Item Consumable Request Form</h5>
-            <form action="Request-Item.php" method="GET">
+            <form action="Request-Non-Consumable.php" method="GET">
                 <div class="row mb-3 gap-2">
                     <div>
                         <select class="form-select" aria-label="Item Name" name="stockid" required>
                             <option value="">Available Items...</option>
                             <?php foreach($rows as $row) :
-                             ?>
-                             <option value="<?php echo $row['stockid'] ?>"><?php echo $row['productname'] ?></option>
-                         <?php endforeach; ?>
-                     </select>
-                     <p class="small text-danger m-auto px-1">
+                               ?>
+                               <option value="<?php echo $row['stockid'] ?>"><?php echo $row['productname'] ?></option>
+                           <?php endforeach; ?>
+                       </select>
+                       <p class="small text-danger m-auto px-1">
                         <?php echo $errorMsg['stockid']; ?>
                     </p>
                 </div>

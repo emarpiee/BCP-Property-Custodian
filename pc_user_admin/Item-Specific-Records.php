@@ -27,7 +27,7 @@ if($_SESSION['userRole'] == 'Property Custodian Clerk') { // PC CLERK
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Accounts | Admin</title>
+  <title>Item-Specific Records</title>
   <!-- STYLESHEETS -->
   <link rel="stylesheet" href="../style/sidebar.css" />
   <link rel="stylesheet" href="../style/style.css" />
@@ -53,11 +53,11 @@ if($_SESSION['userRole'] == 'Property Custodian Clerk') { // PC CLERK
 <body>
 
   <!-- CONTENTS -->
-  <?php include('user-data-modal.php'); ?>
+  <?php include('item-specific-data-modal.php'); ?>
   <?php include('temps/header.php') ?>
   <div class="card m-4">
     <div class="card-header p-3">
-      <h2 class="text-center">Accounts</h2>
+      <h2 class="text-center">Item-Specific Records</h2>
     </div>
     <div class="card-body">
       <div class="container-fluid">
@@ -69,17 +69,19 @@ if($_SESSION['userRole'] == 'Property Custodian Clerk') { // PC CLERK
               <div class="col-md-auto">
                 <table id="example" class="table table-hover">
                   <thead>
-                    <th>ID</th>
-                    <th>DEPT. NAME</th>
+                    <th>REQ. NO</th>
+                    <th>ITEM NAME</th>
+                    <th>REQUESTED BY</th>
                     <th>STATUS</th>
                     <th>ACTION</th>
                   </thead>
                   <tbody>
                   </tbody>
                   <tfoot>
-                    <th>ID</th>
-                    <th>DEPT. NAME</th>
-                    <th>STATUS</th>
+                    <th>REQ. NO</th>
+                    <th>ITEM NAME</th>
+                    <th>REQUESTED BY</th>
+                    <th>STATUS </th>
                     <th>ACTION</th>
                   </tfoot>
                 </table>
@@ -108,15 +110,16 @@ if($_SESSION['userRole'] == 'Property Custodian Clerk') { // PC CLERK
         },
         'serverSide': 'true',
         'processing': 'true',
+        'searching': 'true',
         'paging': 'true',
         'order': [],
         'ajax': {
-          'url': 'fetch-user-data.php',
+          'url': 'fetch-item-specific-data.php',
           'type': 'post',
         },
         "aoColumnDefs": [{
           "bSortable": false,
-          "aTargets": [3]
+          "aTargets": [4]
         },
 
         ]
@@ -127,29 +130,21 @@ if($_SESSION['userRole'] == 'Property Custodian Clerk') { // PC CLERK
     // UPDATE DATA
     $(document).on('submit', '#updateData', function(e) {
       e.preventDefault();
-      var deptName = $('#deptNameField').val().toUpperCase();
-      var deptRoom = $('#deptRoomField').val();
-      var deptCampus = $('#deptCampusField').val();
-      var contactNumber = $('#contactNumberField').val();
-      var firstName = $('#fnameField').val();
-      var lastName = $('#lnameField').val();
-      var userEmail = $('#emailField').val();
-      var accStatus = $('#statusField').val();
+      var requestID = $('#requestIDField').val();
+      var itemId = $('#itemId').val();
+      var deptName = $('#deptNameField').val();
+      var statusOfRequest = $('#statusOfRequestField').val();
+      var itemSpecific = $('#itemSpecificField').val();
+      var itemQuantity = $('#itemQuantityField').val();
       var trid = $('#trid').val();
       var id = $('#id').val();
-      if (deptName != '' && deptRoom != '' && deptCampus != '' && contactNumber != '' && firstName != '' && lastName != '' && userEmail != '' && accStatus != '') {
+      if (itemQuantity != '') {
         $.ajax({
-          url: "update-user-data.php",
+          url: "update-item-specific-data.php",
           type: "post",
           data: {
-            deptName: deptName,
-            deptRoom: deptRoom,
-            deptCampus: deptCampus,
-            contactNumber: contactNumber,
-            firstName: firstName,
-            lastName: lastName,
-            userEmail: userEmail,
-            accStatus: accStatus,
+            statusOfRequest: statusOfRequest,
+            itemQuantity: itemQuantity,
             id: id
           },
           success: function(data) {
@@ -164,7 +159,7 @@ if($_SESSION['userRole'] == 'Property Custodian Clerk') { // PC CLERK
               // table.cell(parseInt(trid) - 1,4).data(city);
               var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-primary btn-sm editbtn m-2">Details</a></td>';
               var row = table.row("[id='" + trid + "']");
-              row.row("[id='" + trid + "']").data([id, deptName, accStatus, button]);
+              row.row("[id='" + trid + "']").data([id, itemSpecific, deptName, statusOfRequest, button]);
               $('#exampleModal').modal('hide');
             } else {
               alert('failed');
@@ -185,7 +180,7 @@ if($_SESSION['userRole'] == 'Property Custodian Clerk') { // PC CLERK
       $('#exampleModal').modal('show');
 
       $.ajax({
-        url: "get_single_data.php",
+        url: "get_item_specific_single_data.php",
         data: {
           id: id
         },
@@ -193,6 +188,14 @@ if($_SESSION['userRole'] == 'Property Custodian Clerk') { // PC CLERK
         success: function(data) {
           var json = JSON.parse(data);
           $('#idField').val(json.accId);
+          $('#itemId').val(json.itemId);
+          $('#requestIDField').val(json.requestID);
+          $('#itemSpecificField').val(json.itemSpecific);
+          $('#itemQuantityField').val(json.itemQuantity);
+          $('#itemMessageField').val(json.itemMessage);
+          $('#statusOfRequestField').val(json.statusOfRequest);
+          $('#itemTypeField').val(json.itemType);
+          $('#descriptionField').val(json.description);
           $('#deptNameField').val(json.deptName);
           $('#deptRoomField').val(json.deptRoom);
           $('#deptCampusField').val(json.deptCampus);

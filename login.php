@@ -69,15 +69,12 @@ if(isset($_SESSION['login_user'])){
                         <div class="mt-2 text-center"> <?php 
                         if(isset($_REQUEST['err'])){?> <p class="p-1 alert alert-danger text-center" role="alert"> <?php echo $_REQUEST['err']; ?> </p> <?php }?> </div>
                         <div class="d-flex small">
-                            <a href="#" class="me-auto" style="text-decoration: none;">Forgot your password?</a>
-                            <div class="dropdown" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Account requests are only available to BCP employees. Students who wish to request an account for internship purposes within the BCP Property Custodian should first reach out to the office.">
+                            <!-- <a href="#" class="me-auto" style="text-decoration: none;">Forgot your password?</a> -->
+                            <div class="ropdown" data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Account requests are only available to BCP employees. Students who wish to request an account for internship purposes within the BCP Property Custodian should first reach out to the office.">
                                 <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"> Request an Account for... </button>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a class="dropdown-item" href="Request-Account-Head-Department.php">Head of the Department</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item disabled" href="#">Auditor</a>
+                                        <a class="dropdown-item" href="Request-Account-Head-Department.php">My Department</a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item disabled" href="#">Property Custodian Assistant</a>

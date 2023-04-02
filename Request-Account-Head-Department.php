@@ -1,14 +1,12 @@
 <?php 
 include('config.php');
-
-$roleId = 3; // role ID of head department
 $email = $password = $firstName = $middleName = $lastName = $deptName = $deptCampus = "";
 $deptRoom = $contactNumber = 0;
 $errorMsg = array('email' => '', 'password' => '', 'firstName' => '', 'middleName' => '', 'lastName' => '', 'deptName' => '', 'deptCampus' => '', 'deptRoom' => '', 'contactNumber' => '');
 
 if(isset($_POST['register'])){
 
-	// check email
+    // check email
 	if(empty($_POST['email'])){
 		$errorMsg['email'] = 'Email is required <br />';
 	} else {
@@ -16,7 +14,7 @@ if(isset($_POST['register'])){
 		if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 			$errorMsg['email'] = 'Email must be a valid email address';
 		} else {
-			// check email if already exists in database
+            // check email if already exists in database
 			$checkIfExist = "SELECT * FROM pc_accounts WHERE userEmail = '$email'";
 			$result = mysqli_query($conn, $checkIfExist);
 			if(mysqli_num_rows($result)){
@@ -25,7 +23,7 @@ if(isset($_POST['register'])){
 		}
 	}
 
-	// check passsowrd
+    // check passsowrd
 	if(empty($_POST['password'])){
 		$errorMsg['password'] = 'Password is required <br />';
 	} else {
@@ -35,47 +33,41 @@ if(isset($_POST['register'])){
 		}
 	}
 
-	// check firstname
+    // check firstname
 	if(empty($_POST['firstName'])){
 		$errorMsg['firstName'] = 'Firstname is required!';
 	}else {
 		$firstName = $_POST['firstName'];
-			// REGEX for letters and spaces only '/^[a-zA-Z\s]+$/'
+            // REGEX for letters and spaces only '/^[a-zA-Z\s]+$/'
 		if(!preg_match('/^[a-zA-Z\s]+$/', $firstName)){
 			$errorMsg['firstName'] = 'Firstname must be letters and spaces only!';
 		}
 
 	}
 
-	// check middle name
-	if(!preg_match('/^[a-zA-Z\s]+$/', $_POST['middleName'])){
-		$errorMsg['middleName'] = 'Middle name must be letters and spaces only!';
-	} else {
-		$middleName = $_POST['middleName'];
-	}
-
-	// check last name
+    // check last name
 	if(empty($_POST['lastName'])){
 		$errorMsg['lastName'] = 'Lastname is required!';
 	}else {
 		$lastName = $_POST['lastName'];
-			// REGEX for letters and spaces only '/^[a-zA-Z\s]+$/'
+            // REGEX for letters and spaces only '/^[a-zA-Z\s]+$/'
 		if(!preg_match('/^[a-zA-Z\s]+$/', $lastName)){
 			$errorMsg['lastName'] = 'Lastname must be letters and spaces only!';
 		}
 
 	}
 
-	// check department name
+    // check department name
 	if(empty($_POST['deptName'])){
 		$errorMsg['deptName'] = 'Department name is required!';
 	}else {
-		$deptName = rtrim($_POST['deptName']);
-			// REGEX for letters and spaces only '/^[a-zA-Z\s]+$/'
+		$deptNameRaw = rtrim($_POST['deptName']);
+		$deptName = strtoupper($deptNameRaw);
+            // REGEX for letters and spaces only '/^[a-zA-Z\s]+$/'
 		if(!preg_match('/^[a-zA-Z\s]+$/', $deptName)){
 			$errorMsg['deptName'] = 'Department name must be letters and spaces only!';
 		} else {
-			// check if dept already exists in database
+            // check if dept already exists in database
 			$checkIfExist2 = "SELECT * FROM pc_accounts WHERE deptName = '$deptName'";
 			$result2 = mysqli_query($conn, $checkIfExist2);
 			if(mysqli_num_rows($result2)){
@@ -85,19 +77,9 @@ if(isset($_POST['register'])){
 
 	}
 
-	// check campus
-	if(empty($_POST['deptCampus'])){
-		$errorMsg['deptCampus'] = 'Department campus is required!';
-	}else {
-		$deptCampus = $_POST['deptCampus'];
-			// REGEX for letters and spaces only '/^[a-zA-Z\s]+$/'
-		if(!preg_match('/^[a-zA-Z\s]+$/', $deptCampus)){
-			$errorMsg['deptCampus'] = 'Department campus must be letters and spaces only!';
-		}
 
-	}
 
-	// check department room number
+    // check department room number
 	if(empty($_POST['deptRoom'])){
 		$errorMsg['deptRoom'] = 'Department Room is required!';
 	} else if(is_int($_POST['deptRoom'])){
@@ -107,7 +89,7 @@ if(isset($_POST['register'])){
 		}
 	}
 
-	// check contact number
+    // check contact number
 	if(is_int($_POST['contactNumber'])){
 		$contactNumber = $_POST['contactNumber'];
 		if($contactNumber < 10 && $contactNumber > 13){
@@ -115,34 +97,34 @@ if(isset($_POST['register'])){
 		}
 	}
 
-	// executes if any errors found in form
+    // executes if any errors found in form
 	if(array_filter($errorMsg)){
-		// error
+        // error
 	} else {
-		// valid form
-		// escapes sepcial characters
+        // valid form
+        // escapes sepcial characters
+		$userRole = 'Head of the Department';
 		$email = mysqli_real_escape_string($conn, $_POST['email']);
 		$password = mysqli_real_escape_string($conn, $_POST['password']);
 		$firstName = mysqli_real_escape_string($conn, $_POST['firstName']);
-		$middleName = mysqli_real_escape_string($conn, $_POST['middleName']);
 		$lastName = mysqli_real_escape_string($conn, $_POST['lastName']);
-		$deptName = mysqli_real_escape_string($conn, $_POST['deptName']);
+		$deptName = strtoupper(mysqli_real_escape_string($conn, $_POST['deptName']));
 		$deptCampus = mysqli_real_escape_string($conn, $_POST['deptCampus']);
 		$deptRoom = $_POST['deptRoom'];
 		$contactNumber = $_POST['contactNumber'];
 
-		// if no errors in form, insert data account table
-		$insertData = "INSERT INTO pc_accounts (userEmail, userPass, firstName, middleName, lastName, deptName, deptCampus, deptRoom, contactNumber, roleId) VALUES ('$email', '$password', '$firstName', '$middleName', '$lastName', '$deptName', '$deptCampus', '$deptRoom', '$contactNumber', '$roleId')";
+        // if no errors in form, insert data account table
+		$insertData = "INSERT INTO pc_accounts (userEmail, userPass, firstName, middleName, lastName, deptName, deptCampus, deptRoom, contactNumber, userRole) VALUES ('$email', '$password', '$firstName', '$middleName', '$lastName', '$deptName', '$deptCampus', '$deptRoom', '$contactNumber', '$userRole')";
 
 		if(mysqli_query($conn, $insertData)){
 			$_POST = array();
 			$email = $password = $firstName = $middleName = $lastName = $deptName = $deptCampus = "";
 			$deptRoom = $contactNumber = 0;
 			$errorMsg = array('email' => '', 'password' => '', 'firstName' => '', 'middleName' => '', 'lastName' => '', 'deptName' => '', 'deptCampus' => '', 'deptRoom' => '', 'contactNumber' => '');
-			echo "ACCOUN REQUEST SUBMITTED TO THE BCP PROPERTY CUSTODIAN DEPARTMENT";
-			
+			header("location:login.php");
+
 		}  else {
-				// error
+                // error
 			echo 'query error' . mysqli_error($conn);
 		}
 
@@ -161,7 +143,7 @@ if(isset($_POST['register'])){
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Register an Account</title>
+	<title>Register Your Department</title>
 	<link rel="stylesheet" href="style/main.css" />
 	<link rel="stylesheet" href="style/bootstrap.css" />
 	<link rel="stylesheet" href="style/login.css" />
@@ -191,7 +173,7 @@ if(isset($_POST['register'])){
 						<h1 class="header2 fw-bold fs-2 m-0">PROPERTY CUSTODIAN</h1>
 					</div>
 
-					<h5 class="separator mb-4">Head of the Department Registration Form</h5>
+					<h5 class="separator mb-4">Registration Form</h5>
 					<!-- REGISTRATION FORM -->
 					<form method="POST" action="Request-Account-Head-Department.php">
 						<?php include('forms/Account-Form.php'); ?>
