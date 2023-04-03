@@ -101,7 +101,7 @@ $myTotalRequests = mysqli_num_rows($result);
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <i class="bi bi-person-fill fa-2x text-gray-300"></i>
+                                <i class="bi bi-list-taskl fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
