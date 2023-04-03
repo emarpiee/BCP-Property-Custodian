@@ -2,16 +2,17 @@
 //check if the user already logged in, if true always redirect to index
 session_start();
 if(isset($_SESSION['login_user'])){
-    if($_SESSION['roleId'] == 1) { // PC HEAD
-        header("location:user_pc_head_admin/dashboard.php");
-} else if($_SESSION['roleId'] == 2){ //PC CLERK
-    header("location:user_pc_clerk/dashboard.php");
-} else if($_SESSION['roleId'] == 3){ //Head Department
-    header("location:user_head_department/dashboard.php");
-} else if($_SESSION['roleId'] == 4){ // PC AUDITOR
-    header("location:user_pc_auditor/dashboard.php");
-} else if($_SESSION['roleId'] == 5){ // PC ASSISTANT
-    header("location:user_pc_assistant/dashboard.php");
+    
+if($_SESSION['userRole'] == 'Property Custodian Clerk') { // PC CLERK
+  header("location:pc_user_clerk/dashboard.php");
+} else if($_SESSION['userRole'] == 'Property Custodian Head'){ //Head Department
+  header("location:pc_user_admin/dashboard.php");
+} else if($_SESSION['userRole'] == 'Head of the Department'){ //Head Department
+  header("location:pc_user_admin/dashboard.php");
+} else if($_SESSION['userRole'] == 'Property Custodian Auditor'){ // PC AUDITOR
+  header("location:pc_user_auditor/dashboard.php");
+} else if($_SESSION['userRole'] == 'Property Custodian Assistant'){ // PC ASSISTANT
+  header("location:pc_user_assistant/dashboard.php");
 }
 } 
 ?>
@@ -66,6 +67,9 @@ if(isset($_SESSION['login_user'])){
                             </div>
                         </div>
                         <button type="submit" class="buttonTemplate sumbit-button btn rounded-2 w-100" name="submit"> Log in </button>
+                        <div class="mt-2 text-center"> <?php 
+                        if(isset($_REQUEST['err3'])){?> <p class="p-1 alert alert-danger text-center" role="alert"> <?php echo $_REQUEST['err3']; ?> </p> <?php }?> </div>
+
                         <div class="mt-2 text-center"> <?php 
                         if(isset($_REQUEST['err'])){?> <p class="p-1 alert alert-danger text-center" role="alert"> <?php echo $_REQUEST['err']; ?> </p> <?php }?> </div>
                         <div class="d-flex small">

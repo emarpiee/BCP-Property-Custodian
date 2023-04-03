@@ -11,13 +11,13 @@ $accId = $_SESSION['accId'];
 $sql = mysqli_query($conn,"SELECT * FROM pc_accounts WHERE accId = $accId ");
 $accInfo = mysqli_fetch_array($sql);
 if($_SESSION['userRole'] == 'Property Custodian Clerk') { // PC CLERK
-  header("location:../user_pc_clerk/dashboard.php");
+  header("location:../pc_user_clerk/dashboard.php");
 } else if($_SESSION['userRole'] == 'Head of the Department'){ //Head Department
-  header("location:../user_head_department/dashboard.php");
+  header("location:../pc_user_head_department/dashboard.php");
 } else if($_SESSION['userRole'] == 'Property Custodian Auditor'){ // PC AUDITOR
-  header("location:../user_pc_auditor/dashboard.php");
+  header("location:../pc_user_auditor/dashboard.php");
 } else if($_SESSION['userRole'] == 'Property Custodian Assistant'){ // PC ASSISTANT
-  header("location:../user_pc_assistant/dashboard.php");
+  header("location:../pc_user_assistant/dashboard.php");
 }
 ?>
 <!doctype html>

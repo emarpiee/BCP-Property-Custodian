@@ -9,13 +9,13 @@ $accId = $_SESSION['accId'];
 $sql = mysqli_query($conn,"SELECT * FROM pc_accounts WHERE accId = $accId ");
 $accInfo = mysqli_fetch_array($sql);
 if($_SESSION['userRole'] == 'Property Custodian Clerk') { // PC CLERK
-  header("location:../user_pc_clerk/dashboard.php");
+  header("location:../pc_user_clerk/dashboard.php");
 } else if($_SESSION['userRole'] == 'Head of the Department'){ //Head Department
-  header("location:../user_head_department/dashboard.php");
+  header("location:../pc_user_head_department/dashboard.php");
 } else if($_SESSION['userRole'] == 'Property Custodian Auditor'){ // PC AUDITOR
-  header("location:../user_pc_auditor/dashboard.php");
+  header("location:../pc_user_auditor/dashboard.php");
 } else if($_SESSION['userRole'] == 'Property Custodian Assistant'){ // PC ASSISTANT
-  header("location:../user_pc_assistant/dashboard.php");
+  header("location:../pc_user_assistant/dashboard.php");
 }
 
 // $sql = "SELECT * FROM pc_items JOIN pc_item_type ON pc_items.`itemTypeId` = pc_item_type.`itemTypeId` WHERE pc_items.`itemTypeId` = 1";
@@ -95,7 +95,7 @@ if(isset($_GET['requestItem'])){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Item Specific Form | Admin</title>
+    <title>Item Specific Form</title>
     <link rel="stylesheet" href="../style/sidebar.css" />
     <link rel="stylesheet" href="../style/style.css" />
     <link rel="stylesheet" href="../style/main.css" />
@@ -139,7 +139,7 @@ if(isset($_GET['requestItem'])){
                     <div class="mb-3 gap-2">
                         <div class="form-floating">
                             <textarea class="form-control" placeholder="Notes / Message" id="MSG" name="itemMessage" style="resize: none;" value="<?php echo htmlspecialchars($itemMessage); ?>"></textarea>
-                            <label for="MSG">Notes / Message</label>
+                            <label for="MSG">Your Report/ Concern here</label>
                             <p class="small text-danger m-auto px-1">
                                 <?php echo $errorMsg['itemMessage']; ?>
                             </p>

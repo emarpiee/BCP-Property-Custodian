@@ -25,22 +25,22 @@ if(isset($_POST['submit']))
 			$_SESSION['userRole'] = $userRole;
 			$_SESSION['accId'] = $result['accId'];
 			$_SESSION["login_user"]="1";
-			header("location:user_pc_clerk/dashboard.php");
+			header("location:pc_user_clerk/dashboard.php");
 		} else if ($userRole == 'Head of the Department'){ // REDIRECT TO OTHER HEAD DEPARTMENT DASHBOARD
 			$_SESSION['userRole'] = $userRole;
 			$_SESSION['accId'] = $result['accId'];
 			$_SESSION["login_user"]="1";
-			header("location:user_head_department/dashboard.php");
+			header("location:pc_user_head_department/dashboard.php");
 		} else if ($userRole == 'Property Custodian Auditor'){ // REDIRECT TO PC AUDITOR DASHBOARD
 			$_SESSION['userRole'] = $userRole;
 			$_SESSION['accId'] = $result['accId'];
 			$_SESSION["login_user"]="1";
-			header("location:user_pc_auditor/dashboard.php");
-		}	else if ($userRole == 'Property Custodian Head'){ // REDIRECT TO PC ASSISTANT DASHBOARD
+			header("location:pc_user_auditor/dashboard.php");
+		}	else if ($userRole == 'Property Custodian Assistant'){ // REDIRECT TO PC ASSISTANT DASHBOARD
 			$_SESSION['userRole'] = $userRole;
 			$_SESSION['accId'] = $result['accId'];
 			$_SESSION["login_user"]="1";
-			header("location:user_pc_assistant/dashboard.php");
+			header("location:pc_user_assistant/dashboard.php");
 		}
 		
 	}

@@ -89,7 +89,7 @@
                     </li>
                     <span class="lineBreak"></span>
                     <li>
-                        <a href="OSAS-Report.php">
+                        <a href="OSAS-Facility-Report.php">
                             <i class="bi bi-flag"></i>
                             <span class="links_name">OSAS Facility Report</span>
                         </a>
